@@ -5,7 +5,7 @@ window.onload = () => {
     // handleProfileUpdate()
 }
 
-async function handleSignin() {
+async function handleSignup() {
     const email = document.getElementById("email").value
     const password = document.getElementById("password").value
     // const password1 = document.getElementById("password1").value
