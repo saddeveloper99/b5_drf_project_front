@@ -17,6 +17,7 @@ export async function getPostings() {
 }
 
 export async function getPostingDetail(POSITING_ID) {
+    console.log(POSITING_ID)
     const url = `${BACK_BASE_URL}/posting/${POSITING_ID}/`
     const response = await fetch(url, {
         method: 'GET'

@@ -1,13 +1,15 @@
 import { FRONT_BASE_URL, getPostings } from './community-api.js';
 
 window.postingDetail = function (POSITING_ID) {
-    window.location.href = `${FRONT_BASE_URL}/community-detail.html`
+    window.location.href = `${FRONT_BASE_URL}/community-detail.html?posting_id=${POSITING_ID}`
+    console.log(POSITING_ID)
 }
 
 window.onload = async function communityPostingList() {
     const postings = await getPostings()
     postings.forEach(posting => {
         const template = document.createElement("div");
+        console.log(posting.id)
         template.innerHTML = `<div class="row" data-posting-id="${posting.id}" style="margin-bottom: 5%;">
                                 <div class="gw-click" onclick="postingDetail(${posting.id})" style="width: 70%;">
                                 <div style="display: flex;">
