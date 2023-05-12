@@ -1,9 +1,35 @@
 window.onload = () => {
     console.log("로딩되었음")
-    loadProfile(2)
-    loadMypage(2)
+    // loadProfile(2)
+    // loadMypage(2)
     // handleProfileUpdate()
 }
+
+async function handleSignin() {
+    const email = document.getElementById("email").value
+    const password = document.getElementById("password").value
+    // const password1 = document.getElementById("password1").value
+    // const password2 = document.getElementById("password2").value
+    const username = document.getElementById("username").value
+    const gender = document.getElementById("gender").value
+    const date_of_birth = document.getElementById("date_of_birth").value
+    console.log(email, password, username, gender, date_of_birth)
+
+    const response = await fetch('http://127.0.0.1:8000/user/signup/', {
+        headers: {
+            "content-type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify({
+            "email": email,
+            "password": password,
+            "username": username,
+            "gender": gender,
+            "date_of_birth": date_of_birth
+        })
+    })
+}
+
 
 async function handleProfileUpdate() {
     const username = document.getElementById("username").value
