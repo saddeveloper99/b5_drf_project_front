@@ -1,0 +1,122 @@
+@import url("https://colorlib.com/etc/regform/colorlib-regform-6/");
+@import "bourbon";
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700,300);
+
+
+.article_wrapper {
+	width: 1000px;
+	height: 1000px;
+	/* background: skyblue; */
+	margin: 0 auto;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.wrapper {
+	width: 1000px;
+	height: 1000px;
+	/* background: pink; */
+	margin-top: 80px;
+}
+
+.form-row {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	-webkit-box-align: start;
+	-webkit-align-items: flex-start;
+	-moz-box-align: start;
+	-ms-flex-align: start;
+	align-items: flex-start;
+	padding: 10px 55px;
+}
+
+.form-row .name {
+	width: 188px;
+	color: #333;
+	font-size: 15px;
+	font-weight: 700;
+}
+
+.textarea1 {
+	width: 680px;
+
+	background: 0 0;
+	line-height: 38px;
+	border: 1px solid #ccc;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	color: #666;
+	font-size: 15px;
+	-webkit-transition: all .4s ease;
+	-o-transition: all .4s ease;
+	-moz-transition: all .4s ease;
+	transition: all .4s ease;
+	padding: 10px 20px;
+
+	resize: none;
+}
+
+.textarea2 {
+	width: 680px;
+	height: 300px;
+
+	background: 0 0;
+	line-height: 38px;
+	border: 1px solid #ccc;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	color: #666;
+	font-size: 15px;
+	-webkit-transition: all .4s ease;
+	-o-transition: all .4s ease;
+	-moz-transition: all .4s ease;
+	transition: all .4s ease;
+	padding: 10px 20px;
+
+	resize: none;
+}
+
+
+
+/* 이미지업로드 */
+
+
+
+/* 등록, 취소  버튼 */
+.button-container {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 80px;
+	/* 버튼과 이전 요소 사이의 간격 조절 */
+}
+
+#submit-btn {
+	background-color: ;
+	color: white;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	margin-left: 10px;
+	/* 버튼 간의 간격 조절 */
+}
+
+#cancel-btn {
+	background-color: gray;
+	color: white;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	margin-left: 10px;
+}
