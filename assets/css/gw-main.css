@@ -1,0 +1,61 @@
+.gw-centered {
+    margin: 0 auto;
+}
+
+.gw-divider {
+    margin: 3em 0;
+    height: 1px;
+    background: rgb(212, 212, 212)
+}
+
+.gw-btn-small {
+    font-size: 1em;
+    margin-top: 1em;
+    height: 38px;
+    padding: 0 1em;
+    margin-right: 5em;
+}
+
+.gw-btn-nocolor {
+    background-color: rgb(168, 164, 164);
+}
+
+.gw-box {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.gw-box-right {
+    margin-left: auto;
+}
+
+.gw-box-left {
+    margin-right: auto;
+}
+
+.gw-search-box {
+    height: 38px;
+    width: 250px;
+    margin-top: 1em;
+    border-radius: 20px;
+}
+
+.gw-main-writer-image {
+    max-width: 40px;
+    border-radius: 50%;
+}
+
+.gw-main-comments-count {
+    margin: 0 0 0 auto;
+}
+
+.gw-write-image-container {
+    margin-left: 5%;
+    width: 25%;
+}
+
+.gw-write-image {
+    max-width: 150px;
+    max-height: 150px;
+}

@@ -1,0 +1,92 @@
+.gw-centered {
+    margin: 0 auto;
+}
+
+.gw-divider {
+    margin: 3em 0;
+    height: 1px;
+    background: rgb(212, 212, 212)
+}
+
+.gw-btn-small {
+    margin-left: auto;
+    font-size: 1em;
+    margin-top: 1em;
+}
+
+.gw-btn-comment {
+    margin-left: auto;
+    font-size: 1em;
+}
+
+.gw-btn-comment:hover {
+    margin-left: auto;
+    font-size: 1em;
+    color: #ccc;
+    background-color: grey;
+}
+
+.gw-btn-nocolor {
+    background-color: transparent;
+    color: rgb(95, 94, 94);
+    font-weight: 100;
+}
+
+
+
+.gw-write-title {
+    margin-bottom: 1em;
+}
+
+
+
+
+.like-button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+    margin: 0 auto;
+    max-width: 80px;
+    display: flex;
+}
+
+.like-icon {
+    fill: #ccc;
+    transition: fill 0.2s;
+}
+
+.like-button.liked .like-icon {
+    fill: #ff5b5b;
+}
+
+.like-count {
+    text-align: center;
+}
+
+
+
+#gw-comment-list {
+    display: block;
+    margin-top: 50px;
+}
+
+.comment-image {
+    max-width: 40px;
+    max-width: 40px;
+    border-radius: 50%;
+    margin: 10px 5px 10px;
+}
+
+.comment-writer {
+    margin: auto 5px;
+}
+
+.gw-comment-writer {
+    display: flex;
+}
+
+.like-button-wrapper {
+    margin-top: 5em;
+}
