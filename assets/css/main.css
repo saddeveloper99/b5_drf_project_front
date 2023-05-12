@@ -1743,6 +1743,7 @@ table thead {
 	position: absolute;
 	width: 100%;
 	height: 100%;
+	object-fit: cover;
 }
 
 .image.left {
@@ -1952,7 +1953,12 @@ ul.menu li:first-child {
 	border-bottom-right-radius: 0;
 }
 
-.box.feature .image.featured-ji img {
+.box.feature-ji {
+	padding: 0;
+	box-shadow: 3px 3px 0px 3px rgba(0, 0, 0, 0.05);
+}
+
+.box.feature-ji .image.featured-ji img {
 	border-radius: 70%;
 }
 
