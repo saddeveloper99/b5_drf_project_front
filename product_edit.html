@@ -1,0 +1,203 @@
+<!DOCTYPE HTML>
+<!--
+	Verti by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+	<title>Verti by HTML5 UP</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="main.css" />
+	<link rel="stylesheet" href="main2.css" />
+	<link rel="stylesheet" href="index.js" />
+</head>
+
+<body class="is-preload no-sidebar">
+	<div id="page-wrapper">
+
+		<!-- Header -->
+		<div id="header-wrapper">
+			<header id="header" class="container">
+
+				<!-- Logo -->
+				<div id="logo">
+					<h1><a href="index.html">Verti</a></h1>
+					<span>by HTML5 UP</span>
+				</div>
+
+				<!-- Nav -->
+				<nav id="nav">
+					<ul>
+						<li><a href="index.html">Welcome</a></li>
+						<li>
+							<a href="#">Dropdown</a>
+							<ul>
+								<li><a href="#">Lorem ipsum dolor</a></li>
+								<li><a href="#">Magna phasellus</a></li>
+								<li>
+									<a href="#">Phasellus consequat</a>
+									<ul>
+										<li><a href="#">Lorem ipsum dolor</a></li>
+										<li><a href="#">Phasellus consequat</a></li>
+										<li><a href="#">Magna phasellus</a></li>
+										<li><a href="#">Etiam dolore nisl</a></li>
+									</ul>
+								</li>
+								<li><a href="#">Veroeros feugiat</a></li>
+							</ul>
+						</li>
+						<li><a href="left-sidebar.html">Left Sidebar</a></li>
+						<li><a href="right-sidebar.html">Right Sidebar</a></li>
+						<li class="current"><a href="no-sidebar.html">No Sidebar</a></li>
+					</ul>
+				</nav>
+
+			</header>
+		</div>
+
+		<!-- Main -->
+		<div id="main-wrapper">
+			<!-- Content -->
+			<div class="article_wrapper">
+				<h2>상품 등록하기</h2>
+				<div class="wrapper">
+					<div class="form-row">
+						<div class="name">상품 이름</div>
+						<div class="input-group">
+							<input type=text class="textarea1" name="product_name"></input>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="name">상품 설명</div>
+						<div class="input-group">
+							<textarea class="textarea2" name="product_description"></textarea>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="name">브랜드</div>
+						<div class="input-group">
+							<input type=text class="textarea1" name="product_brand"></input>
+						</div>
+					</div>
+					<!-- 이미지업로드 -->
+					<div class="form-row">
+						<div class="name">상품 이미지</div>
+						<div class="input-group js-input-file">
+							<span class="input-file__info"></span>
+							<label class="label--file" for="file">
+								<input class="input-file" type="file" name="file_cv" id="file">
+							</label>
+						</div>
+					</div>
+					<!-- 등록, 취소 버튼 -->
+					<div class="button-container">
+						<button onclick="submitPost()" class="btn btn-primary" id="submit-btn">등록</button>
+						<button onclick="cancelForm()" class="btn btn-secondary" id="cancel-btn">취소</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Footer -->
+		<div id="footer-wrapper">
+			<footer id="footer" class="container">
+				<div class="row">
+					<div class="col-3 col-6-medium col-12-small">
+
+						<!-- Links -->
+						<section class="widget links">
+							<h3>Random Stuff</h3>
+							<ul class="style2">
+								<li><a href="#">Etiam feugiat condimentum</a></li>
+								<li><a href="#">Aliquam imperdiet suscipit odio</a></li>
+								<li><a href="#">Sed porttitor cras in erat nec</a></li>
+								<li><a href="#">Felis varius pellentesque potenti</a></li>
+								<li><a href="#">Nullam scelerisque blandit leo</a></li>
+							</ul>
+						</section>
+
+					</div>
+					<div class="col-3 col-6-medium col-12-small">
+
+						<!-- Links -->
+						<section class="widget links">
+							<h3>Random Stuff</h3>
+							<ul class="style2">
+								<li><a href="#">Etiam feugiat condimentum</a></li>
+								<li><a href="#">Aliquam imperdiet suscipit odio</a></li>
+								<li><a href="#">Sed porttitor cras in erat nec</a></li>
+								<li><a href="#">Felis varius pellentesque potenti</a></li>
+								<li><a href="#">Nullam scelerisque blandit leo</a></li>
+							</ul>
+						</section>
+
+					</div>
+					<div class="col-3 col-6-medium col-12-small">
+
+						<!-- Links -->
+						<section class="widget links">
+							<h3>Random Stuff</h3>
+							<ul class="style2">
+								<li><a href="#">Etiam feugiat condimentum</a></li>
+								<li><a href="#">Aliquam imperdiet suscipit odio</a></li>
+								<li><a href="#">Sed porttitor cras in erat nec</a></li>
+								<li><a href="#">Felis varius pellentesque potenti</a></li>
+								<li><a href="#">Nullam scelerisque blandit leo</a></li>
+							</ul>
+						</section>
+
+					</div>
+					<div class="col-3 col-6-medium col-12-small">
+
+						<!-- Contact -->
+						<section class="widget contact">
+							<h3>Contact Us</h3>
+							<ul>
+								<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a>
+								</li>
+								<li><a href="#" class="icon brands fa-facebook-f"><span
+											class="label">Facebook</span></a></li>
+								<li><a href="#" class="icon brands fa-instagram"><span
+											class="label">Instagram</span></a></li>
+								<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a>
+								</li>
+								<li><a href="#" class="icon brands fa-pinterest"><span
+											class="label">Pinterest</span></a></li>
+							</ul>
+							<p>1234 Fictional Road<br />
+								Nashville, TN 00000<br />
+								(800) 555-0000</p>
+						</section>
+
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-12">
+						<div id="copyright">
+							<ul class="menu">
+								<li>&copy; Untitled. All rights reserved</li>
+								<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+
+	</div>
+
+	<!-- Scripts -->
+
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.dropotron.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
