@@ -30,3 +30,12 @@ export async function getPostingDetail(POSITING_ID) {
     }
 }
 
+window.postingDetail = function (POSITING_ID) {
+    window.location.href = `${FRONT_BASE_URL}/community-detail.html?posting_id=${POSITING_ID}`
+    console.log(POSITING_ID)
+}
+
+export async function getWriter(POSITING_ID) {
+    console.log(POSITING_ID)
+    const url = `${BACK_BASE_URL}/posting/${POSITING_ID}/`
+}
