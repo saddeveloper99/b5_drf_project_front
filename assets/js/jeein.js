@@ -13,7 +13,6 @@ async function handleSignin() {
     const username = document.getElementById("username").value
     const gender = document.getElementById("gender").value
     const date_of_birth = document.getElementById("date_of_birth").value
-    console.log(email, password, username, gender, date_of_birth)
 
     const response = await fetch('http://127.0.0.1:8000/user/signup/', {
         headers: {
@@ -30,7 +29,44 @@ async function handleSignin() {
     })
 }
 
+async function handleLogin() {
+    const email = document.getElementById("email").value
+    const password = document.getElementById("password").value
 
+    const response = await fetch("http://127.0.0.1:8000/user/login/", {
+        headers: {
+            "content-type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify({
+            "email": email,
+            "password": password
+        })
+    })
+
+    const response_json = await response.json()
+
+    localStorage.setItem("access", response_json.access)
+    localStorage.setItem("refresh", response_json.refresh)
+
+    const base64Url = response_json.access.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    localStorage.setItem("payload", jsonPayload);
+    const payload_parse = JSON.parse(jsonPayload)
+
+    console.log(payload_parse.name)
+    // 로그인 완료되면 Login버튼에 payload_parse.name 넣어주기 해야함
+
+    // 프로필 수정 페이지 가기 해야함
+    window.location.href = "profile-update.html"
+
+}
+
+// 미완성
 async function handleProfileUpdate() {
     const username = document.getElementById("username").value
     console.log(username)
@@ -102,8 +138,6 @@ async function loadMypage(user_id) {
         new_posting.innerText = element.title
         list.appendChild(new_posting)
         postings.appendChild(list)
-        console.log(element.updated_at)
-
     })
 
     const reviews = document.getElementById("profile_review")
