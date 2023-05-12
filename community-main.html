@@ -64,8 +64,12 @@
 					<h3 class="gw-community">🍷🍸🍹커뮤니티</h3>
 					<div class="gw-box">
 						<div style="display: flex;">
+							<select name="sort" id="gw-sort">
+								<option value=""></option>
+							</select>
+							<input type="submit" value="Submit">
 							<!-- 검색 기능 추가 시 -->
-							<input class="gw-search-box" type="text">
+							<!-- <input class="gw-search-box" type="text"> -->
 						</div>
 						<div class="gw-box-right">
 							<button class="gw-btn-small">글쓰기</button>
@@ -78,95 +82,7 @@
 					<div id="gw-posting-list">
 						<div id="gw-posting">
 							<!-- 게시글 예시-->
-							<div class="row" style="margin-bottom: 5%;">
-								<div style="width: 70%;">
-									<div style="display: flex;">
-										<h3>게시글 제목입니다</h3>
-									</div>
-									<div>
-										Lorem ipsum dolor sit amet, consectetur
-										adipiscing elit.
-										Maecenas ac quam risus, at tempus justo. Sed dictum rutrum massa eu
-										volutpat.
-										Quisque vitae hendrerit sem. Pellentesque lorem felis,
-									</div>
-								</div>
-								<div class="gw-write-image-container">
-									<img class="gw-write-image"
-										src="https://img.danawa.com/prod_img/500000/143/536/img/13536143_1.jpg?shrink=330:*&_v=20230222093241"
-										alt="">
-								</div>
-								<div style="display: flex;">
-									<div style="margin-right: 10px;">
-										<img class="gw-main-writer-image" src="/images/profile.png" alt="">
-									</div>
-									<div>김채원</div>
-								</div>
-								<div class="gw-main-comments-count">댓글 23</div>
-								<div style="margin: 0 5% 0 0;">
-									<object class="like-icon" data="assets/css/images/heart.svg" type="image/svg+xml"></object>
-									43
-								</div>
-							</div>
-							<div class="row" style="margin-bottom: 5%;">
-								<div style="width: 70%;">
-									<div style="display: flex;">
-										<h3>게시글 제목입니다</h3>
-									</div>
-									<div>
-										Lorem ipsum dolor sit amet, consectetur
-										adipiscing elit.
-										Maecenas ac quam risus, at tempus justo. Sed dictum rutrum massa eu
-										volutpat.
-										Quisque vitae hendrerit sem. Pellentesque lorem felis,
-									</div>
-								</div>
-								<div class="gw-write-image-container">
-									<img class="gw-write-image"
-										src="https://img.danawa.com/prod_img/500000/143/536/img/13536143_1.jpg?shrink=330:*&_v=20230222093241"
-										alt="">
-								</div>
-								<div style="display: flex;">
-									<div style="margin-right: 10px;">
-										<img class="gw-main-writer-image" src="/images/profile.png" alt="">
-									</div>
-									<div>김채원</div>
-								</div>
-								<div class="gw-main-comments-count">댓글 23</div>
-								<div style="margin: 0 5% 0 0;">
-									<object class="like-icon" data="assets/css/images/heart.svg" type="image/svg+xml"></object>
-									43
-								</div>
-							</div>
-							<div class="row" style="margin-bottom: 5%;">
-								<div style="width: 70%;">
-									<div style="display: flex;">
-										<h3>게시글 제목입니다</h3>
-									</div>
-									<div>
-										Lorem ipsum dolor sit amet, consectetur
-										adipiscing elit.
-										Maecenas ac quam risus, at tempus justo. Sed dictum rutrum massa eu
-										volutpat.
-										Quisque vitae hendrerit sem. Pellentesque lorem felis,
-									</div>
-								</div>
-								<div class="gw-write-image-container">
-									<img class="gw-write-image"
-										src="https://img.danawa.com/prod_img/500000/143/536/img/13536143_1.jpg?shrink=330:*&_v=20230222093241"
-										alt="">
-								</div>
-								<div style="display: flex;">
-									<div style="margin-right: 10px;">
-										<img class="gw-main-writer-image" src="/images/profile.png" alt="">
-									</div>
-									<div>김채원</div>
-								</div>
-								<div class="gw-main-comments-count">댓글 23</div>
-								<div style="margin: 0 5% 0 0;">
-									<object class="like-icon" data="assets/css/images/heart.svg" type="image/svg+xml"></object>
-									43
-								</div>
+							<div id="gw-container">
 							</div>
 							<hr>
 						</div>
@@ -273,6 +189,7 @@
 	<script src="assets/js/breakpoints.min.js"></script>
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
+	<script src="assets/js/community-main.js" type="module"></script>
 
 </body>
 
