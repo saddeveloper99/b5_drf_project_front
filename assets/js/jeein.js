@@ -35,9 +35,6 @@ async function handleSignup() {
     }
 
     localStorage.setItem("user-info", JSON.stringify(userInfo));
-    // const { email1, username1, gender1, date_of_birth1 } = JSON.parse(localStorage.getItem("user-info"));
-    // console.log(localStorage.getItem("user-info")) OK
-    // console.log(email1) OK
     window.location.href = "profile-update.html"
 }
 
@@ -52,10 +49,15 @@ async function loadProfileAfterSignup() {
     profile_email.innerText = email;
     const profile_username = document.getElementById("ji_profile_username");
     profile_username.setAttribute("placeholder", username);
-    const profile_gender = document.getElementById("ji_profile_date_of_birth");
-    profile_gender.setAttribute("placeholder", "일단테스트");
     const profile_date_or_birth = document.getElementById("ji_profile_date_of_birth");
     profile_date_or_birth.setAttribute("placeholder", date_of_birth);
+    if (gender == "F") {
+        const option_female = document.getElementById("ji_option_female");
+        option_female.setAttribute("selected", "selected");
+    } else {
+        const option_male = document.getElementById("ji_option_male");
+        option_male.setAttribute("selected", "selected");
+    }
 }
 
 
