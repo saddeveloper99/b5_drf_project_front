@@ -183,6 +183,8 @@
 			placeholder: '글 내용을 입력하세요',
 			tabsize: 2,
 			height: 500,
+			focus: true,
+			lang: "ko-KR",
 			toolbar: [
 				['style', ['style']],
 				['font', ['bold', 'underline', 'clear']],
@@ -191,15 +193,24 @@
 				['table', ['table']],
 				['insert', ['link', 'picture', 'video']],
 				['view', ['fullscreen', 'codeview', 'help']]
-			]
+			],
+			// // {
+			// callbacks: {
+			// 	onImageUpload: function (files) {
+			// 		uploadSummernoteImageFile(files[0], this);
+			// 	},
+			// 	onPaste: function (e) {
+			// 		var clipboardData = e.originalEvent.clipboardData;
+			// 		if (clipboardData && clipboardData.items && clipboardData.items.length) {
+			// 			var item = clipboardData.items[0];
+			// 			if (item.kind === 'file' && item.type.indexOf('image/') !== -1) {
+			// 				e.preventDefault();
+			// 			}
+			// 		}
+			// 	}
+			// }
 		});
-		function saveContent() {
-			var summernoteContent = $('#summernote').summernote('code');
-			console.log("summernoteContent : " + summernoteContent);
-		}
-		$(document).on('click', '#writeButton', function () {
-			saveContent();
-		});
+
 	</script>
 	<script src="assets/js/community-write.js" type="module"></script>
 	<!-- <script src="assets/js/jquery.min.js"></script> -->
