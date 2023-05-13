@@ -11,6 +11,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/main.css" />
+	<link rel="stylesheet" href="main2.css" />
 </head>
 
 <body class="is-preload left-sidebar">
@@ -70,6 +71,11 @@
 										<div class="image featured-ji">
 											<img id="profile_image" src="images/happy_rtan.gif" alt="" />
 										</div>
+										<div style="text-align: center;">
+											<label for="file" class="button alt">Welcome!</label>
+											<input class="input-file" type="file" name="file_cv" id="file"
+												style="display: none;">
+										</div>
 									</a>
 								</section>
 							</div>
@@ -126,7 +132,7 @@
 										<div class="row">
 											<div class="col-6" style="padding-right: 5rem;">
 												<h3>이메일</h3>
-												<p id="ji_profile_email"></p>
+												<p id="ji_profile_email">{이메일}</p>
 												<h3>비밀번호</h3>
 												<div style="margin-top: -1rem; margin-bottom: 2rem;">
 													<input type="password" name="password" id="ji_profile_password"
