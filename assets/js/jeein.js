@@ -27,6 +27,8 @@ async function handleSignup() {
             "date_of_birth": date_of_birth
         })
     })
+
+    // 회원가입 후 프로필 수정 페이지로 가입 정보를 전달하기 위해 로컬스토리지에 사용자 정보 저장
     const userInfo = {
         "email": email,
         "username": username,
@@ -35,6 +37,33 @@ async function handleSignup() {
     }
 
     localStorage.setItem("user-info", JSON.stringify(userInfo));
+
+    // 회원가입 후 로그인 상태로 만들어주기(토큰을 로컬스토리지에 저장)
+    const response_after_signup = await fetch("http://127.0.0.1:8000/user/login/", {
+        headers: {
+            "content-type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify({
+            "email": email,
+            "password": password
+        })
+    })
+
+    const response_json = await response_after_signup.json()
+
+    localStorage.setItem("access", response_json.access)
+    localStorage.setItem("refresh", response_json.refresh)
+
+    // user-info 저장으로 필요 없어짐. 일단은 놔둠
+    // const base64Url = response_json.access.split('.')[1];
+    // const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    // const jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
+    //     return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    // }).join(''));
+
+    // localStorage.setItem("payload", jsonPayload);
+
     window.location.href = "profile-update.html"
 }
 
