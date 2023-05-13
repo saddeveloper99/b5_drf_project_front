@@ -4,11 +4,12 @@
 //     // loadMypage(2)
 //     // handleProfileUpdate()
 // }
-loadProfileNotNew(2)
+// loadProfileNotNew(2)
+loadNavMenu()
 
 async function handleSignup() {
-    const email = document.getElementById("email").value
-    const password = document.getElementById("password").value
+    const email = document.getElementById("ji_signup_email").value
+    const password = document.getElementById("ji_signup_password").value
     // const password1 = document.getElementById("password1").value
     // const password2 = document.getElementById("password2").value
     const username = document.getElementById("username").value
@@ -127,7 +128,7 @@ async function handleLogin() {
     // 로그인 완료되면 Login버튼에 payload_parse.name 넣어주기 해야함
 
     // 로그인 성공하면 메인페이지로 가기
-    window.location.href = "index.html"
+    // window.location.href = "index.html"
 
 }
 
@@ -288,5 +289,26 @@ async function loadProfileNotNew(user_id) {
     profile_postings_count.innerText = response_json.posting_set.length;
     const profile_reviews_count = document.getElementById("profile_reviews_count");
     profile_reviews_count.innerText = response_json.productreview_set.length;
+
+}
+
+
+function loadNavMenu() {
+
+    menu = document.getElementById("ji_login_logout")
+    if (localStorage.getItem("access") != null) {
+        menu.remove()
+    } else {
+        menu.innerText = "LogIn/SignUp"
+    }
+}
+
+
+function handleLogout() {
+    localStorage.removeItem("refresh")
+    localStorage.removeItem("access")
+    localStorage.removeItem("payload")
+
+    window.location.href = "index.html"
 
 }
