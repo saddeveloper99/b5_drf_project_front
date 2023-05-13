@@ -139,11 +139,11 @@
 					<div class="gw-divider"></div>
 					<!-- 댓글 작성란 -->
 					<div id="gw-comment-write">
-						<form action="">
-							<textarea name="post-comment" placeholder="댓글을 작성해주세요." rows="2" style="width:100%"
+						<form method="post" action="">
+							<textarea id="post-comment" placeholder="댓글을 작성해주세요." rows="2" style="width:100%"
 								required></textarea>
 							<div style="display: flex;">
-								<button class="gw-btn-small" type="submit">댓글 작성</button>
+								<button id="gw-w-comment" class="gw-btn-small" type="button">댓글 작성</button>
 							</div>
 						</form>
 					</div>

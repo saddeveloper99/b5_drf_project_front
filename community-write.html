@@ -74,7 +74,7 @@
 							<input name="gwTitle" id="gwTitle" type="text" placeholder="글 제목을 입력하세요">
 						</div>
 						<div>
-							<div name="gwContent" id="summernote"></div>
+							<div id="summernote"></div>
 							<button onclick="" class="gw-btn-nocolor gw-btn-small">취소</button>
 							<button id="writeButton" class="gw-btn-small" type="button">작성 완료</button>
 						</div>
@@ -193,9 +193,16 @@
 				['view', ['fullscreen', 'codeview', 'help']]
 			]
 		});
+		function saveContent() {
+			var summernoteContent = $('#summernote').summernote('code');
+			console.log("summernoteContent : " + summernoteContent);
+		}
+		$(document).on('click', '#writeButton', function () {
+			saveContent();
+		});
 	</script>
 	<script src="assets/js/community-write.js" type="module"></script>
-	<script src="assets/js/jquery.min.js"></script>
+	<!-- <script src="assets/js/jquery.min.js"></script> -->
 	<script src="assets/js/jquery.dropotron.min.js"></script>
 	<script src="assets/js/browser.min.js"></script>
 	<script src="assets/js/breakpoints.min.js"></script>

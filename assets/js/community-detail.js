@@ -1,15 +1,15 @@
 console.log("ffoefko")
-import { getPostingDetail } from './community-api.js';
+import { getPostingDetail, writeComment } from './community-api.js';
 
-
+// 게시글 상세 내용, 유저 미니프로필 가져오기 핸들러
 window.onload = async function communityPostingDetail() {
     const urlParams = new URLSearchParams(window.location.search);
     const POSITING_ID = urlParams.get('posting_id');
     const posting = await getPostingDetail(POSITING_ID)
 
+    // console.log(posting)
     // 작성자 
     const writer = document.querySelectorAll('.gw-writer')
-    console.log(writer)
     writer.forEach(name => {
         name.innerHTML = posting.username;
     });
@@ -49,10 +49,26 @@ window.onload = async function communityPostingDetail() {
     likeCount.innerHTML = posting.like_count;
 }
 
+// 코멘트 가져오기 핸들러
+window.onload = async function communityPostingComment() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const POSITING_ID = urlParams.get('posting_id');
+    const comment = await getPostingComment(POSITING_ID)
+}
 
+// 댓글 작성
+function handleCommentWriteBtnClick() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const POSITING_ID = urlParams.get('posting_id');
+    writeComment(POSITING_ID);
+}
 
+const writeButton = document.getElementById("gw-w-comment");
+writeButton.addEventListener("click", handleCommentWriteBtnClick);
 
+// 좋아요 버튼
 const likeButton = document.querySelector('.like-button');
 likeButton.addEventListener('click', function () {
     likeButton.classList.toggle('liked');
 });
+
