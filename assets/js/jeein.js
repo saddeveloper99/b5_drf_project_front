@@ -4,6 +4,7 @@
 //     // loadMypage(2)
 //     // handleProfileUpdate()
 // }
+loadProfileNotNew(2)
 
 async function handleSignup() {
     const email = document.getElementById("email").value
@@ -69,7 +70,7 @@ async function handleSignup() {
 
 // 회원 가입 후 입력 정보를 프로필 수정 페이지로 
 async function loadProfileAfterSignup() {
-    if (localStorage.getItem("new") == "true") {
+    if (localStorage.getItem("new") == "True") {
         localStorage.removeItem("new")
         const { email, username, gender, date_of_birth } = JSON.parse(localStorage.getItem("user-info"));
         localStorage.removeItem("user-info");
@@ -144,7 +145,6 @@ async function handleMock() {
 }
 
 
-// 미완성
 async function handleProfileUpdate() {
     const email = JSON.parse(localStorage.getItem("payload")).email
     const username = document.getElementById("ji_profile_username").value
@@ -171,7 +171,8 @@ async function handleProfileUpdate() {
         })
     })
 
-    console.log(response)
+    // 프로필 수정 성공하면 메인페이지로 가기
+    window.location.href = "index.html"
 
 }
 
@@ -238,5 +239,54 @@ async function loadMypage(user_id) {
         reviews.appendChild(list)
 
     })
+
+}
+
+
+async function loadProfileNotNew(user_id) {
+    const response = await fetch(`http://127.0.0.1:8000/user/profile/${user_id}/`, { method: "GET" })
+    response_json = await response.json()
+    // console.log(response_json)
+
+    const profile_email = document.getElementById("ji_profile_email");
+    profile_email.innerText = response_json.email;
+    const profile_username = document.getElementById("ji_profile_username");
+    profile_username.setAttribute("placeholder", response_json.username);
+    const profile_date_or_birth = document.getElementById("ji_profile_date_of_birth");
+    profile_date_or_birth.setAttribute("placeholder", response_json.date_of_birth);
+    if (response_json.gender == "F") {
+        const option_female = document.getElementById("ji_option_female");
+        option_female.setAttribute("selected", "selected");
+    } else {
+        const option_male = document.getElementById("ji_option_male");
+        option_male.setAttribute("selected", "selected");
+    }
+
+    const profile_image = document.getElementById("profile_image");
+    profile_image.setAttribute("src", `http://127.0.0.1:8000${response_json.image}`);
+    const profile_followers_count = document.getElementById("profile_followers_count");
+    profile_followers_count.innerText = response_json.followers_count;
+    const profile_followings_count = document.getElementById("profile_followings_count");
+    profile_followings_count.innerText = response_json.followings_count;
+
+    const profile_introduction = document.getElementById("ji_profile_introduction");
+    profile_introduction.setAttribute("placeholder", response_json.introduction);
+
+    const profile_introduction_up = document.getElementById("profile_introduction");
+    profile_introduction_up.innerText = response_json.introduction;
+
+    const profile_date_of_birth = document.getElementById("ji_profile_date_of_birth");
+    profile_date_of_birth.setAttribute("placeholder", response_json.date_of_birth);
+    const profile_preference = document.getElementById("ji_profile_preference");
+    profile_preference.setAttribute("placeholder", response_json.preference);
+
+    const response_writings = await fetch(`http://127.0.0.1:8000/user/mypage/${user_id}/`, { method: "GET" })
+
+    response_json = await response_writings.json()
+
+    const profile_postings_count = document.getElementById("profile_postings_count");
+    profile_postings_count.innerText = response_json.posting_set.length;
+    const profile_reviews_count = document.getElementById("profile_reviews_count");
+    profile_reviews_count.innerText = response_json.productreview_set.length;
 
 }
