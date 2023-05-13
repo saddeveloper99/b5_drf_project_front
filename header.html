@@ -29,7 +29,12 @@
 				<!-- Nav -->
 				<nav id="nav">
 					<ul>
-						<li><a href="index.html">Welcome</a></li>
+						<li>
+							<a href="#">Login</a>
+							<ul>
+								<li><a href="signup.html">New customer? <b>Create Account!</b></a></li>
+							</ul>
+						</li>
 						<li>
 							<a href="#">Dropdown</a>
 							<ul>
@@ -58,119 +63,38 @@
 
 		<!-- Main -->
 		<div id="main-wrapper">
-			<div class="container">
-				<form>
-					<div class="row gtr-200">
-						<div class="col-4 col-12-medium">
-							<div id="sidebar">
+			<form>
 
-								<!-- Sidebar -->
-								<section>
-									<a href="#">
-										<div class="image featured-ji">
-											<img id="profile_image" alt="" />
-										</div>
-									</a>
-								</section>
+				<body class="is-preload no-sidebar">
+					<div id="page-wrapper">
+						<div class="container">
+
+							<h2 style="text-align: center;">로그인</h2>
+
+							<div class="row">
+								<div class="col-4"></div>
+								<div class="col-4">
+									<div style="margin-top: -1rem; margin-bottom: 2rem;">
+										<input type="email" name="email" id="email" value="" placeholder="이메일" />
+									</div>
+									<div style="margin-top: -1rem; margin-bottom: 2rem;">
+										<input type="password" name="password" id="password" value=""
+											placeholder="비밀번호" />
+									</div>
+								</div>
 							</div>
-						</div>
-						<div class="col-8 col-12-medium imp-medium">
-							<div id="content">
 
-								<!-- Content -->
-								<article>
-									<div class="row gtr-50">
-										<div class="col-3">
-											<h2 align="center">게시글</h2>
-										</div>
-										<div class="col-3">
-											<h2 align="center">리뷰</h2>
-										</div>
-										<div class="col-3">
-											<h2 align="center">팔로워</h2>
-										</div>
-										<div class="col-3">
-											<h2 align="center">팔로잉</h2>
-										</div>
-									</div>
-									<div class="row gtr-50">
-										<div class="col-3">
-											<h2 align="center" id="profile_postings_count"></h2>
-										</div>
-										<div class="col-3">
-											<h2 align="center" id="profile_reviews_count"></h2>
-										</div>
-										<div class="col-3">
-											<h2 align="center" id="profile_followers_count"></h2>
-										</div>
-										<div class="col-3">
-											<h2 align="center" id="profile_followings_count"></h2>
-										</div>
-									</div>
-									<p id="profile_introduction"></p>
-								</article>
+							<div style="text-align: center;">
+								<button onclick="handleLogin()" type="button" class="button alt"
+									style="text-align: center;">Login</button>
+							</div>
+							<div style="text-align: center;">
+								<a style="text-align: center;" href="signup.html">Create Account</a>
 							</div>
 						</div>
 					</div>
-
-					<body class="is-preload no-sidebar">
-						<div id="page-wrapper" style="margin-bottom: 5rem;">
-							<div class="container">
-								<div id="content">
-									<article>
-
-										<h2 style="margin-top: 2rem;">프로필 수정</h2>
-
-										<div class="row">
-											<div class="col-6" style="padding-right: 5rem;">
-												<h3>이메일</h3>
-												<p id="profile_email"></p>
-												<h3>비밀번호</h3>
-												<div style="margin-top: -1rem; margin-bottom: 2rem;">
-													<input type="password" name="password" id="password" value="" />
-												</div>
-												<h3>이름</h3>
-												<div style="margin-top: -1rem; margin-bottom: 2rem;">
-													<input type="text" name="username" id="username" value=""
-														placeholder="원래이름" />
-												</div>
-												<h3>성별</h3>
-												<div style="margin-top: -1rem; margin-bottom: 2rem;">
-													<input type="text" name="gender" id="gender" value=""
-														placeholder="원래성별" />
-												</div>
-												<h3>생년월일</h3>
-												<div style="margin-top: -1rem; margin-bottom: 2rem;">
-													<input type="text" name="date_of_birth" id="date_of_birth" value=""
-														placeholder="원래생년월일" />
-												</div>
-											</div>
-											<div class="col-6">
-												<h3>선호음료</h3>
-												<div style="margin-bottom: 2rem;">
-													<input type="text" name="preference" id="preference" value=""
-														placeholder="원래선호음료" />
-												</div>
-												<h3>자기소개</h3>
-												<div>
-													<textarea name="demo-message" id="demo-message"
-														placeholder="원래 자기 소개" rows="10"></textarea>
-												</div>
-											</div>
-										</div>
-									</article>
-								</div>
-								<!-- <footer> -->
-								<button type="button" class="button alt"
-									style="float: right; margin-left:15px; margin-bottom:15px; color: crimson;">탈퇴</button>
-								<button type="button" onclick="handleProfileUpdate()" class="button alt"
-									style="float: right;">수정</button>
-								<!-- </footer> -->
-							</div>
-						</div>
-					</body>
-				</form>
-			</div>
+				</body>
+			</form>
 		</div>
 
 		<!-- Footer -->
@@ -231,13 +155,16 @@
 								<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a>
 								</li>
 								<li><a href="#" class="icon brands fa-facebook-f"><span
-											class="label">Facebook</span></a></li>
+											class="label">Facebook</span></a>
+								</li>
 								<li><a href="#" class="icon brands fa-instagram"><span
-											class="label">Instagram</span></a></li>
+											class="label">Instagram</span></a>
+								</li>
 								<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a>
 								</li>
 								<li><a href="#" class="icon brands fa-pinterest"><span
-											class="label">Pinterest</span></a></li>
+											class="label">Pinterest</span></a>
+								</li>
 							</ul>
 							<p>1234 Fictional Road<br />
 								Nashville, TN 00000<br />
