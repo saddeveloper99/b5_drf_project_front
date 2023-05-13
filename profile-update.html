@@ -68,7 +68,7 @@
 								<section>
 									<a href="#">
 										<div class="image featured-ji">
-											<img id="profile_image" alt="" />
+											<img id="profile_image" src="images/happy_rtan.gif" alt="" />
 										</div>
 									</a>
 								</section>
@@ -95,25 +95,27 @@
 									</div>
 									<div class="row gtr-50">
 										<div class="col-3">
-											<h2 align="center" id="profile_postings_count"></h2>
+											<h2 align="center" id="profile_postings_count">0</h2>
 										</div>
 										<div class="col-3">
-											<h2 align="center" id="profile_reviews_count"></h2>
+											<h2 align="center" id="profile_reviews_count">0</h2>
 										</div>
 										<div class="col-3">
-											<h2 align="center" id="profile_followers_count"></h2>
+											<h2 align="center" id="profile_followers_count">0</h2>
 										</div>
 										<div class="col-3">
-											<h2 align="center" id="profile_followings_count"></h2>
+											<h2 align="center" id="profile_followings_count">0</h2>
 										</div>
 									</div>
-									<p id="profile_introduction"></p>
+									<p id="profile_introduction">자기소개를 작성해주세요</p>
 								</article>
 							</div>
 						</div>
 					</div>
 
-					<body class="is-preload no-sidebar">
+					<script src="assets/js/jeein.js"></script>
+
+					<body class="is-preload no-sidebar" onload="loadProfileAfterSignup()">
 						<div id="page-wrapper" style="margin-bottom: 5rem;">
 							<div class="container">
 								<div id="content">
@@ -124,37 +126,40 @@
 										<div class="row">
 											<div class="col-6" style="padding-right: 5rem;">
 												<h3>이메일</h3>
-												<p id="profile_email"></p>
+												<p id="ji_profile_email"></p>
 												<h3>비밀번호</h3>
 												<div style="margin-top: -1rem; margin-bottom: 2rem;">
-													<input type="password" name="password" id="password" value="" />
+													<input type="password" name="password" id="ji_profile_password"
+														value="" />
 												</div>
 												<h3>이름</h3>
 												<div style="margin-top: -1rem; margin-bottom: 2rem;">
-													<input type="text" name="username" id="username" value=""
-														placeholder="원래이름" />
+													<input type="text" name="username" id="ji_profile_username" value=""
+														placeholder="이름" />
 												</div>
 												<h3>성별</h3>
 												<div style="margin-top: -1rem; margin-bottom: 2rem;">
-													<input type="text" name="gender" id="gender" value=""
-														placeholder="원래성별" />
+													<select id="ji_profile_gender">
+														<option value="M">남성</option>
+														<option value="F">여성</option>
+													</select>
 												</div>
 												<h3>생년월일</h3>
 												<div style="margin-top: -1rem; margin-bottom: 2rem;">
-													<input type="text" name="date_of_birth" id="date_of_birth" value=""
-														placeholder="원래생년월일" />
+													<input type="text" name="date_of_birth"
+														id="ji_profile_date_of_birth" value="" placeholder="생년월일" />
 												</div>
 											</div>
 											<div class="col-6">
 												<h3>선호음료</h3>
 												<div style="margin-bottom: 2rem;">
 													<input type="text" name="preference" id="preference" value=""
-														placeholder="원래선호음료" />
+														placeholder="선호음료" />
 												</div>
 												<h3>자기소개</h3>
 												<div>
-													<textarea name="demo-message" id="demo-message"
-														placeholder="원래 자기 소개" rows="10"></textarea>
+													<textarea name="demo-message" id="demo-message" placeholder="자기 소개"
+														rows="10"></textarea>
 												</div>
 											</div>
 										</div>

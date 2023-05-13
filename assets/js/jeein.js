@@ -1,9 +1,9 @@
-window.onload = () => {
-    console.log("로딩되었음")
-    // loadProfile(2)
-    // loadMypage(2)
-    // handleProfileUpdate()
-}
+// window.onload = () => {
+//     console.log("로딩되었음")
+//     // loadProfile(2)
+//     // loadMypage(2)
+//     // handleProfileUpdate()
+// }
 
 async function handleSignup() {
     const email = document.getElementById("email").value
@@ -27,7 +27,37 @@ async function handleSignup() {
             "date_of_birth": date_of_birth
         })
     })
+    const userInfo = {
+        "email": email,
+        "username": username,
+        "gender": gender,
+        "date_of_birth": date_of_birth,
+    }
+
+    localStorage.setItem("user-info", JSON.stringify(userInfo));
+    // const { email1, username1, gender1, date_of_birth1 } = JSON.parse(localStorage.getItem("user-info"));
+    // console.log(localStorage.getItem("user-info")) OK
+    // console.log(email1) OK
+    window.location.href = "profile-update.html"
 }
+
+// 회원 가입 후 입력 정보를 프로필 수정 페이지로 
+async function loadProfileAfterSignup() {
+
+    const { email, username, gender, date_of_birth } = JSON.parse(localStorage.getItem("user-info"));
+    localStorage.removeItem("user-info");
+    console.log(email, username, gender, date_of_birth);
+
+    const profile_email = document.getElementById("ji_profile_email");
+    profile_email.innerText = email;
+    const profile_username = document.getElementById("ji_profile_username");
+    profile_username.setAttribute("placeholder", username);
+    const profile_gender = document.getElementById("ji_profile_date_of_birth");
+    profile_gender.setAttribute("placeholder", "일단테스트");
+    const profile_date_or_birth = document.getElementById("ji_profile_date_of_birth");
+    profile_date_or_birth.setAttribute("placeholder", date_of_birth);
+}
+
 
 async function handleLogin() {
     const email = document.getElementById("email").value
@@ -61,14 +91,14 @@ async function handleLogin() {
     console.log(payload_parse.name)
     // 로그인 완료되면 Login버튼에 payload_parse.name 넣어주기 해야함
 
-    // 프로필 수정 페이지 가기 해야함
-    window.location.href = "profile-update.html"
+    // 로그인 성공하면 메인페이지로 가기
+    window.location.href = "#"
 
 }
 
 // 미완성
 async function handleProfileUpdate() {
-    const username = document.getElementById("username").value
+    const username = document.getElementById("ji_profile_username").value
     console.log(username)
 
 
