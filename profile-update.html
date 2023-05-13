@@ -11,7 +11,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/main.css" />
-	<link rel="stylesheet" href="main2.css" />
+	<!-- <link rel="stylesheet" href="main2.css" /> -->
 </head>
 
 <body class="is-preload left-sidebar">
@@ -72,7 +72,7 @@
 											<img id="profile_image" src="images/happy_rtan.gif" alt="" />
 										</div>
 										<div style="text-align: center;">
-											<label for="file" class="button alt">Welcome!</label>
+											<label for="file" class="button alt" type="button">Welcome!</label>
 											<input class="input-file" type="file" name="file_cv" id="file"
 												style="display: none;">
 										</div>
@@ -159,12 +159,12 @@
 											<div class="col-6">
 												<h3>선호음료</h3>
 												<div style="margin-bottom: 2rem;">
-													<input type="text" name="preference" id="preference" value=""
-														placeholder="선호음료" />
+													<input type="text" name="preference" id="ji_profile_preference"
+														value="" placeholder="선호음료" />
 												</div>
 												<h3>자기소개</h3>
 												<div>
-													<textarea name="demo-message" id="demo-message" placeholder="자기 소개"
+													<textarea id="ji_profile_introduction" placeholder="자기 소개"
 														rows="10"></textarea>
 												</div>
 											</div>
@@ -173,8 +173,9 @@
 								</div>
 								<!-- <footer> -->
 								<button type="button" class="button alt"
-									style="float: right; margin-left:15px; margin-bottom:15px; color: crimson;">탈퇴</button>
-								<button type="button" onclick="handleProfileUpdate()" class="button alt"
+									style="float: right; margin-left:15px; margin-bottom:15px; color: crimson;"
+									onclick="handleMock()">탈퇴(mock)</button>
+								<button type=" button" onclick="handleProfileUpdate()" class="button alt"
 									style="float: right;">수정</button>
 								<!-- </footer> -->
 							</div>

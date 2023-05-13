@@ -55,38 +55,41 @@ async function handleSignup() {
     localStorage.setItem("access", response_json.access)
     localStorage.setItem("refresh", response_json.refresh)
 
-    // user-info 저장으로 필요 없어짐. 일단은 놔둠
-    // const base64Url = response_json.access.split('.')[1];
-    // const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    // const jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
-    //     return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    // }).join(''));
+    const base64Url = response_json.access.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
 
-    // localStorage.setItem("payload", jsonPayload);
+    localStorage.setItem("payload", jsonPayload);
+    localStorage.setItem("new", "True");
 
     window.location.href = "profile-update.html"
 }
 
 // 회원 가입 후 입력 정보를 프로필 수정 페이지로 
 async function loadProfileAfterSignup() {
+    if (localStorage.getItem("new") == "true") {
+        localStorage.removeItem("new")
+        const { email, username, gender, date_of_birth } = JSON.parse(localStorage.getItem("user-info"));
+        localStorage.removeItem("user-info");
+        console.log(email, username, gender, date_of_birth);
 
-    const { email, username, gender, date_of_birth } = JSON.parse(localStorage.getItem("user-info"));
-    localStorage.removeItem("user-info");
-    console.log(email, username, gender, date_of_birth);
-
-    const profile_email = document.getElementById("ji_profile_email");
-    profile_email.innerText = email;
-    const profile_username = document.getElementById("ji_profile_username");
-    profile_username.setAttribute("placeholder", username);
-    const profile_date_or_birth = document.getElementById("ji_profile_date_of_birth");
-    profile_date_or_birth.setAttribute("placeholder", date_of_birth);
-    if (gender == "F") {
-        const option_female = document.getElementById("ji_option_female");
-        option_female.setAttribute("selected", "selected");
-    } else {
-        const option_male = document.getElementById("ji_option_male");
-        option_male.setAttribute("selected", "selected");
+        const profile_email = document.getElementById("ji_profile_email");
+        profile_email.innerText = email;
+        const profile_username = document.getElementById("ji_profile_username");
+        profile_username.setAttribute("placeholder", username);
+        const profile_date_or_birth = document.getElementById("ji_profile_date_of_birth");
+        profile_date_or_birth.setAttribute("placeholder", date_of_birth);
+        if (gender == "F") {
+            const option_female = document.getElementById("ji_option_female");
+            option_female.setAttribute("selected", "selected");
+        } else {
+            const option_male = document.getElementById("ji_option_male");
+            option_male.setAttribute("selected", "selected");
+        }
     }
+    else { }
 }
 
 
@@ -123,30 +126,53 @@ async function handleLogin() {
     // 로그인 완료되면 Login버튼에 payload_parse.name 넣어주기 해야함
 
     // 로그인 성공하면 메인페이지로 가기
-    window.location.href = "#"
+    window.location.href = "index.html"
 
 }
 
+
+async function handleMock() {
+
+    const response = await fetch('http://127.0.0.1:8000/user/mock/', {
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("access")
+        },
+        method: "GET",
+    })
+
+    console.log(response)
+}
+
+
 // 미완성
 async function handleProfileUpdate() {
+    const email = JSON.parse(localStorage.getItem("payload")).email
     const username = document.getElementById("ji_profile_username").value
-    console.log(username)
+    const password = document.getElementById("ji_profile_password").value
+    const gender = document.getElementById("ji_profile_gender").value
+    const date_of_birth = document.getElementById("ji_profile_date_of_birth").value
+    const preference = document.getElementById("ji_profile_preference").value
+    const introduction = document.getElementById("ji_profile_introduction").value
+    console.log(password, username, gender, date_of_birth, preference, introduction);
 
-
+    // console.log(JSON.parse(localStorage.getItem("payload")).user_id)
+    window.location.href = "index.html"
     const response = await fetch('http://127.0.0.1:8000/user/profile/', {
         headers: {
             "content-type": "application/json",
-            "Authorization": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgzODI1Nzc0LCJpYXQiOjE2ODM3ODk3NzQsImp0aSI6ImUxZDYyZmE1NmQ2NzQ3YjQ5YThlYzgyOTg3MGY1NjM4IiwidXNlcl9pZCI6Mn0.os7pp311Fm3uQeBS_qsmrC_bdRo2b92Ss9WAXX24mUg"
+            "Authorization": "Bearer " + localStorage.getItem("access")
         },
         method: "PUT",
         body: JSON.stringify({
-            "password": "1",
+            "email": email,
+            "password": password,
             "username": username,
-            "gender": "M"
+            "gender": gender
         })
     })
 
     console.log(response)
+
 }
 
 async function loadProfile(user_id) {
