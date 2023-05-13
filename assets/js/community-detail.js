@@ -1,12 +1,19 @@
 console.log("ffoefko")
-import { getPostingDetail, writeComment } from './community-api.js';
+import { getPostingDetail, writeComment, getPostingComment } from './community-api.js';
 
 // 게시글 상세 내용, 유저 미니프로필 가져오기 핸들러
 window.onload = async function communityPostingDetail() {
     const urlParams = new URLSearchParams(window.location.search);
-    const POSITING_ID = urlParams.get('posting_id');
-    const posting = await getPostingDetail(POSITING_ID)
+    const POSTING_ID = urlParams.get('posting_id');
+    const posting = await getPostingDetail(POSTING_ID)
+    const comments = await getPostingComment(POSTING_ID)
+    communityPostingContent(posting)
+    communityPostingComment(comments)
 
+}
+
+
+async function communityPostingContent(posting) {
     // console.log(posting)
     // 작성자 
     const writer = document.querySelectorAll('.gw-writer')
@@ -50,10 +57,32 @@ window.onload = async function communityPostingDetail() {
 }
 
 // 코멘트 가져오기 핸들러
-window.onload = async function communityPostingComment() {
+async function communityPostingComment() {
     const urlParams = new URLSearchParams(window.location.search);
     const POSITING_ID = urlParams.get('posting_id');
-    const comment = await getPostingComment(POSITING_ID)
+    const comments = await getPostingComment(POSITING_ID)
+
+    comments.forEach(comment => {
+        const template = document.createElement("div");
+        template.setAttribute("class", "gw-comment")
+        template.innerHTML = `  <div class="gw-comment-writer">
+                                    <img class="comment-image" src="${comment.image}" alt="">
+                                    <div class="comment-writer">${comment.username}</div>
+                                    <div style="display: flex; margin:auto 0 auto auto">
+                                        <button class="gw-btn-comment gw-btn-nocolor">수정</button>
+                                        <button class="gw-btn-comment gw-btn-nocolor">삭제</button>
+                                    </div>
+                                </div>
+                                <div class="gw-comment-content"
+                                    style="background-color:rgb(228, 228, 228); padding: 2%; border-radius: 10px;">
+                                    <div style="width: 90%;">${comment.content}
+                                    </div>
+                                </div>`
+        const comment_list = document.getElementById("gw-comment-list")
+        comment_list.appendChild(template)
+        console.log(comment)
+    })
+
 }
 
 // 댓글 작성

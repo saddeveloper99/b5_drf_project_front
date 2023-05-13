@@ -72,7 +72,7 @@ export async function writePosting() {
 }
 
 
-//  댓글 작성 POST 요청
+// 댓글 작성 POST 요청
 export async function writeComment(POSITING_ID) {
     const url = `${BACK_BASE_URL}/posting/${POSITING_ID}/comment/`;
     const content = document.getElementById('post-comment').value;
@@ -91,5 +91,20 @@ export async function writeComment(POSITING_ID) {
     if (response.status == 201) {
         alert("작성 완료");
         window.location.reload()
+    }
+}
+
+// 댓글 목록 GET 요청
+export async function getPostingComment(POSITING_ID) {
+    console.log(POSITING_ID)
+    const url = `${BACK_BASE_URL}/posting/${POSITING_ID}/comment/`
+    const response = await fetch(url, {
+        method: 'GET'
+    })
+    if (response.status == 200) {
+        const response_json = await response.json()
+        return response_json
+    } else {
+        console.log("잠시 후 다시 시도해주세요")
     }
 }
