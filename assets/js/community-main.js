@@ -1,10 +1,5 @@
 import { FRONT_BASE_URL, getPostings } from './community-api.js';
 
-window.postingDetail = function (POSITING_ID) {
-    window.location.href = `${FRONT_BASE_URL}/community-detail.html?posting_id=${POSITING_ID}`
-    console.log(POSITING_ID)
-}
-
 window.onload = async function communityPostingList() {
     const postings = await getPostings()
     postings.forEach(posting => {
