@@ -30,3 +30,36 @@ export async function getPostingDetail(POSITING_ID) {
     }
 }
 
+window.postingDetail = function (POSITING_ID) {
+    window.location.href = `${FRONT_BASE_URL}/community-detail.html?posting_id=${POSITING_ID}`
+    console.log(POSITING_ID)
+}
+
+export async function getWriter(POSITING_ID) {
+    console.log(POSITING_ID)
+    const url = `${BACK_BASE_URL}/posting/${POSITING_ID}/`
+}
+
+export async function writePosting() {
+    const gwTitle = document.getElementById('gwTitle').value;
+    const summernote = document.getElementById('summernote').value;
+
+    let token = localStorage.getItem("access")
+
+    const formdata = new FormData();
+    formdata.append('gwTitle', gwTitle);
+    formdata.append('gwContent', summernote);
+    const url = `${BACK_BASE_URL}/posting/`
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            "Authorization": `Bearer ${token}`
+        },
+        body: formdata
+    })
+
+    if (response.status == 200) {
+        alert("작성 완료");
+        window.location.replace(`${FRONT_BASE_URL}/`);
+    }
+}

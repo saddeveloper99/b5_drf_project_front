@@ -22,3 +22,7 @@
 .gw-write-title {
     margin-bottom: 1em;
 }
+
+.note-editor .note-editable {
+    line-height: 100%;
+}
