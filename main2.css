@@ -3,6 +3,9 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:400,700,300);
 
 
+/* product_edit page */
+
+
 .article_wrapper {
 	width: 1000px;
 	height: 1000px;
@@ -107,7 +110,7 @@
 	border: none;
 	border-radius: 4px;
 	cursor: pointer;
-	margin-left: 10px;
+	margin-left: 15px;
 	/* 버튼 간의 간격 조절 */
 }
 
@@ -118,5 +121,55 @@
 	border: none;
 	border-radius: 4px;
 	cursor: pointer;
-	margin-left: 10px;
+	margin-left: 15px;
+}
+
+
+
+
+
+
+
+/* index page */
+
+/* sub rank */
+#sub-rank-wrapper {
+	background-color: white;
+	margin-top: 60px;
+}
+
+.sub-rank-container {
+	margin: 0 auto;
+	max-width: 100%;
+	padding: 100px 0px 200px 0px;
+	width: 1450px;
+}
+
+.sub-rank-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.sub-rank-col {
+	/* margin-right: 30px; */
+	width: 33.3333%;
+	/* background-color: aquamarine; */
+	padding: 25px 25px;
+}
+
+.sub-rank-list {
+	box-sizing: border-box;
+	box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.5);
+
+	border: solid 1px;
+	border-color: gainsboro;
+	border-radius: 10px;
+	padding: 25px;
+
+}
+
+li {
+	line-height: 3;
+	font-size: large;
 }
