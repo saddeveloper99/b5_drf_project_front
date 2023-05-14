@@ -576,3 +576,14 @@ async function loadMyfeed() {
 
     })
 }
+
+
+// 로그인 여부에 따라 signup.html 또는 myfeed.html
+function handleCheckIsLoggedIn() {
+
+    if (localStorage.getItem("access") != null) {
+        window.location.href = "myfeed.html"
+    } else {
+        window.location.href = "signup.html"
+    }
+}
