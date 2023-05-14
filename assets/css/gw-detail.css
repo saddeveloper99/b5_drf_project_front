@@ -50,6 +50,19 @@
     margin-right: 5px;
 }
 
+/* 수정 삭제 버튼 */
+#gw-edit-box{
+    display: flex;
+}
+
+#gw-edit-btn {
+    margin: 1em 1em 0 auto;
+}
+
+#gw-delete-btn {
+    margin-top: 1em;
+}
+
 /* 게시글 내용 */
 #gw-content {
     min-height: 400px;
