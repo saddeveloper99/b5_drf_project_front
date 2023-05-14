@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="assets/css/main.css" />
 </head>
 
-<body class="is-preload no-sidebar">
+<body class="is-preload no-sidebar" onload=loadFollowList()>
 	<div id="page-wrapper">
 
 		<!-- Header -->
@@ -65,97 +65,16 @@
 					<article>
 						<div class="row">
 							<div class="col-6">
-								<h2>{팔로워숫자} followers</h2>
-								<section class="box feature-ji">
-									<div class="row">
-										<div class="col-4" style="margin-bottom: -4%;">
-											<a href="#">
-												<div class="image featured-ji">
-													<img src="images/profile.png" alt="" />
-												</div>
-											</a>
-										</div>
-										<div class="col-8">
-											<h3 style="margin-bottom: 0;">{팔로워1 이름}</h3>
-											<p style="margin-bottom: 10%;">{two@gmail.com}</p>
-											<button type="button" class="button alt"
-												style="float: right; margin:3% 5% 5% 0;">팔로우</button>
-										</div>
-									</div>
-								</section>
-								<section class="box feature-ji">
-									<div class="row">
-										<div class="col-4" style="margin-bottom: -4%;">
-											<a href="#">
-												<div class="image featured-ji">
-													<img src="https://msimage.lottechilsung.co.kr/goods/31/14/24/26/22623_N_N_600.jpg"
-														alt="" />
-												</div>
-											</a>
-										</div>
-										<div class="col-8">
-											<h3 style="margin-bottom: 0;">{팔로워2 이름}</h3>
-											<p style="margin-bottom: 10%;">{admin@gmail.com}</p>
-											<button type="button" class="button alt"
-												style="float: right; margin:3% 5% 5% 0;">팔로우</button>
-										</div>
-									</div>
-								</section>
-								<section class="box feature-ji">
-									<div class="row">
-										<div class="col-4" style="margin-bottom: -4%;">
-											<a href="#">
-												<div class="image featured-ji">
-													<img src="images/pic01.jpg" alt="" />
-												</div>
-											</a>
-										</div>
-										<div class="col-8">
-											<h3 style="margin-bottom: 0;">{팔로워3 이름}</h3>
-											<p style="margin-bottom: 10%;">{팔로워3 계정}</p>
-											<button type="button" class="button alt"
-												style="float: right; margin:3% 5% 5% 0;">팔로우</button>
-										</div>
-									</div>
-								</section>
+								<h2 id="ji_follower_count">0 Followers</h2>
+								<div id="ji_follower-container">
+									<!-- follower list -->
+								</div>
 							</div>
 							<div class="col-6">
-								<h2>following {팔로잉숫자}</h2>
-
-								<section class="box feature-ji">
-									<div class="row">
-										<div class="col-4" style="margin-bottom: -4%;">
-											<a href="#">
-												<div class="image featured-ji">
-													<img src="images/flat_big.png" alt="" />
-												</div>
-											</a>
-										</div>
-										<div class="col-8">
-											<h3 style="margin-bottom: 0;">{팔로잉1 이름}</h3>
-											<p style="margin-bottom: 10%;">{팔로잉1 계정}</p>
-											<button type="button" class="button alt"
-												style="float: right; margin:3% 5% 5% 0; color: crimson;">팔로우 취소</button>
-										</div>
-									</div>
-								</section>
-								<section class="box feature-ji">
-									<div class="row">
-										<div class="col-4" style="margin-bottom: -4%;">
-											<a href="#">
-												<div class="image featured-ji">
-													<img src="images/small.png" alt="" />
-												</div>
-											</a>
-										</div>
-										<div class="col-8">
-											<h3 style="margin-bottom: 0;">{팔로잉2 이름}</h3>
-											<p style="margin-bottom: 10%;">{팔로잉2 계정}</p>
-											<button type="button" class="button alt"
-												style="float: right; margin:3% 5% 5% 0; color: crimson;">팔로우 취소</button>
-										</div>
-									</div>
-								</section>
+								<h2 id="ji_following_count">Following 0</h2>
+								<div id="ji_following-container">
+									<!-- following list -->
+								</div>
 							</div>
 						</div>
 					</article>
@@ -260,6 +179,7 @@
 	<script src="assets/js/breakpoints.min.js"></script>
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
+	<script src="assets/js/jeein.js"></script>
 
 </body>
 

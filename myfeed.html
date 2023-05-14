@@ -11,9 +11,10 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/main.css" />
+	<!-- <link rel="stylesheet" href="main2.css" /> -->
 </head>
 
-<body class="is-preload left-sidebar" onload="loadNavMenu()">
+<body class="is-preload left-sidebar">
 	<div id="page-wrapper">
 
 		<!-- Header -->
@@ -29,9 +30,9 @@
 				<!-- Nav -->
 				<nav id="nav">
 					<ul>
-						<li><a onclick="handleCheckIsLoggedIn()" id="ji_login_logout" style="cursor: pointer;"></a></li>
+						<li><a href="index.html">Welcome</a></li>
 						<li>
-							<a id="ji_my_nav_menu" onclick="loadMyMypage()"></a>
+							<a href="#">Dropdown</a>
 							<ul>
 								<li><a href="profile.html">Lorem ipsum dolor</a></li>
 								<li><a href="#">Magna phasellus</a></li>
@@ -58,64 +59,56 @@
 
 		<!-- Main -->
 		<div id="main-wrapper">
-			<form>
+			<div class="container">
+				<form>
 
-				<body class="is-preload no-sidebar">
-					<div id="page-wrapper">
-						<div class="container">
-							<div class="row">
-								<div class="col-6" style="padding: 0 5rem 0 5rem;">
+					<body class="is-preload no-sidebar" onload="loadMyfeed()">
+						<div id="page-wrapper" style="margin-bottom: 5rem;">
+							<div class="container">
+								<div id="content">
+									<article>
 
-									<h2 style="text-align: center;">로그인</h2>
+										<h2 style="margin-top: 2rem;">팔로우 피드</h2>
 
-									<div style="margin-top: -1rem; margin-bottom: 2rem;">
-										<input type="email" name="email" id="email" value="" placeholder="이메일" />
-									</div>
-									<div style="margin-top: -1rem; margin-bottom: 2rem;">
-										<input type="password" name="password" id="password" value=""
-											placeholder="비밀번호" />
-									</div>
-									<div style="text-align: center;">
-										<button onclick="handleLogin()" type="button" class="button alt"
-											style="text-align: center;">LogIn</button>
-									</div>
-								</div>
-								<div class="col-6" style="padding: 0 5rem 0 5rem;">
+										<div class="row gtr-50">
+											<div class="col-6">
+												<h3>게시글</h3>
+												<ul class="style2" id="ji_myfeed_posting">
+												</ul>
+											</div>
+											<div class="col-6">
+												<h3>리뷰</h3>
+												<ul class="style2" id="ji_myfeed_review">
+												</ul>
+											</div>
+										</div>
 
-									<h2 style="text-align: center;">회원가입</h2>
+										<h2 style="margin-top: 2rem;">좋아요 피드</h2>
 
-									<div style="margin-top: -1rem; margin-bottom: 2rem;">
-										<input type="email" name="email" id="ji_signup_email" value=""
-											placeholder="이메일" />
-									</div>
-									<div style="margin-top: -1rem; margin-bottom: 2rem;">
-										<input type="password" name="password" id="ji_signup_password" value=""
-											placeholder="비밀번호" />
-									</div>
-									<div style="margin-top: -1rem; margin-bottom: 2rem;">
-										<input type="text" name="username" id="username" value="" placeholder="이름" />
-									</div>
-									<div style="margin-top: -1rem; margin-bottom: 2rem;">
-										<select id="gender">
-											<option value="">- 성별 -</option>
-											<option value="M">남성</option>
-											<option value="F">여성</option>
-										</select>
-									</div>
-									<div style="margin-top: -1rem; margin-bottom: 2rem;">
-										<input type="text" name="date_of_birth" id="date_of_birth" value=""
-											placeholder="생년월일 YYYY-MM-DD" />
-									</div>
-									<div style="text-align: center;">
-										<button onclick="handleSignup()" type="button" class="button alt"
-											style="text-align: center;">SignUp</button>
-									</div>
+										<div class="row gtr-50">
+											<div class="col-4">
+												<h3>게시글</h3>
+												<ul class="style2" id="ji_myfeed_like_posting">
+												</ul>
+											</div>
+											<div class="col-4">
+												<h3>상품</h3>
+												<ul class="style2" id="ji_myfeed_like_product">
+												</ul>
+											</div>
+											<div class="col-4">
+												<h3>리뷰</h3>
+												<ul class="style2" id="ji_myfeed_like_review">
+												</ul>
+											</div>
+										</div>
+									</article>
 								</div>
 							</div>
 						</div>
-					</div>
-				</body>
-			</form>
+					</body>
+				</form>
+			</div>
 		</div>
 
 		<!-- Footer -->
@@ -196,7 +189,7 @@
 						<div id="copyright">
 							<ul class="menu">
 								<li>&copy; Untitled. All rights reserved</li>
-								<li><a onclick="handleLogout()" style="cursor: pointer;">로그아웃</a></li>
+								<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
 							</ul>
 						</div>
 					</div>
