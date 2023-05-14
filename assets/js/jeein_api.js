@@ -4,7 +4,12 @@ export async function loadProfile(user_id) {
     const response_json = await response.json()
 
     const profile_image = document.getElementById("profile_image");
-    profile_image.setAttribute("src", `http://127.0.0.1:8000${response_json.image}`);
+    if (response_json.image == null) {
+        profile_image.setAttribute("src", "images/happy_rtan.gif");
+    } else {
+        profile_image.setAttribute("src", `http://127.0.0.1:8000${response_json.image}`);
+    }
+
     const profile_username = document.getElementById("profile_username");
     const profile_followers_count = document.getElementById("profile_followers_count");
     profile_followers_count.innerText = response_json.followers_count;
