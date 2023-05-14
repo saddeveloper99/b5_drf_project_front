@@ -145,7 +145,7 @@ async function handleMock() {
 // 이미지 오류
 async function handleProfileUpdate() {
     const email = JSON.parse(localStorage.getItem("payload")).email
-    // const image = document.getElementById("file").files[0].name
+    const image = document.getElementById("file").files[0].name
     const username = document.getElementById("ji_profile_username").value
     const password = document.getElementById("ji_profile_password").value
     const gender = document.getElementById("ji_profile_gender").value
@@ -153,27 +153,77 @@ async function handleProfileUpdate() {
     const preference = document.getElementById("ji_profile_preference").value
     const introduction = document.getElementById("ji_profile_introduction").value
 
-    console.log(password, username, gender, date_of_birth, preference, introduction);//, image);
 
-    const response = await fetch('http://127.0.0.1:8000/user/profile/', {
-        headers: {
-            "content-type": "application/json",
-            "Authorization": "Bearer " + localStorage.getItem("access")
-        },
-        method: "PUT",
-        body: JSON.stringify({
-            "email": email,
-            // "image": image,
-            "password": password,
-            "username": username,
-            "gender": gender,
-            "preference": preference,
-            "introduction": introduction
+    ///////////////
+    // 이미지 업로드
+    const inputFile = document.querySelector(".input-file");
+    const inputFileInfo = document.querySelector(".input-file__info");
+    const previewImage = document.querySelector(".preview-image");
+
+    inputFile.addEventListener("change", function () {
+        const file = this.files[0];
+        const reader = new FileReader();
+
+        reader.addEventListener("load", function () {
+            previewImage.src = reader.result;
+        });
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    });
+
+
+    const form = document.getElementById("ji-profile-update-form");
+    const url = 'http://127.0.0.1:8000/user/profile/';
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(form);
+        formData.append('email', email);
+
+        // 폼 객체 values 값을 순회.
+        // let values = formData.values();
+        // for (const pair of values) {
+        //     console.log(pair);
+        // }
+
+        fetch('http://127.0.0.1:8000/user/profile/', {
+            headers: {
+                "Content-Type": "multipart/form-data",
+                "Authorization": "Bearer " + localStorage.getItem("access")
+            },
+            method: "PUT",
+            body: formData,
         })
-    })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error(error));
+    });
+    //////////////////
 
-    // 프로필 수정 성공하면 메인페이지로 가기
-    window.location.href = "index.html"
+    // console.log(password, username, gender, date_of_birth, preference, introduction, image);
+    // JSON 말고 formData로 보내야함!!!
+    // const response = await fetch('http://127.0.0.1:8000/user/profile/', {
+    //     headers: {
+    //         "content-type": "application/json",
+    //         "Authorization": "Bearer " + localStorage.getItem("access")
+    //     },
+    //     method: "PUT",
+    //     body: JSON.stringify({
+    //         "email": email,
+    //         // "image": image,
+    //         "password": password,
+    //         "username": username,
+    //         "gender": gender,
+    //         "preference": preference,
+    //         "introduction": introduction
+    //     })
+    // })
+
+    // 프로필 수정하고 메인페이지로 가기
+    // window.location.href = "index.html"
 
 }
 
@@ -183,7 +233,12 @@ async function loadProfile(user_id) {
     response_json = await response.json()
 
     const profile_image = document.getElementById("profile_image");
-    profile_image.setAttribute("src", `http://127.0.0.1:8000${response_json.image}`);
+    if (response_json.image == null) {
+        profile_image.setAttribute("src", "images/happy_rtan.gif");
+    } else {
+        profile_image.setAttribute("src", `http://127.0.0.1:8000${response_json.image}`);
+    }
+
     const profile_username = document.getElementById("profile_username");
     const profile_followers_count = document.getElementById("profile_followers_count");
     profile_followers_count.innerText = response_json.followers_count;
@@ -381,7 +436,7 @@ async function loadFollowList() {
             template.innerHTML = `
         <div class="row">
             <div class="col-4" style="margin-bottom: -4%;">
-                <a href="#">
+                <a onclick="loadUserMypage(${follower[3]})" style="cursor: pointer;">
                     <div class="image featured-ji">
                         <img src="images/happy_rtan.gif" alt="" />
                     </div>
@@ -399,7 +454,7 @@ async function loadFollowList() {
                 template.innerHTML = `
             <div class="row">
                 <div class="col-4" style="margin-bottom: -4%;">
-                    <a href="#">
+                    <a onclick="loadUserMypage(${follower[3]})" style="cursor: pointer;">
                         <div class="image featured-ji">
                             <img src="http://127.0.0.1:8000/media/${follower[2]}/" alt="" />
                         </div>
@@ -428,7 +483,7 @@ async function loadFollowList() {
             template.innerHTML = `
         <div class="row">
             <div class="col-4" style="margin-bottom: -4%;">
-                <a href="#">
+                <a onclick="loadUserMypage(${following[3]})" style="cursor: pointer;">
                     <div class="image featured-ji">
                         <img src="images/happy_rtan.gif" alt="" />
                     </div>
@@ -446,7 +501,7 @@ async function loadFollowList() {
                 template.innerHTML = `
             <div class="row">
                 <div class="col-4" style="margin-bottom: -4%;">
-                    <a href="#">
+                    <a onclick="loadUserMypage(${following[3]})" style="cursor: pointer;">
                         <div class="image featured-ji">
                             <img src="http://127.0.0.1:8000/media/${following[2]}/" alt="" />
                         </div>
@@ -603,4 +658,10 @@ function loadMyMypage() {
 function loadMyMyProfile() {
     const my_id = JSON.parse(localStorage.getItem("payload")).user_id
     window.location.href = `http://127.0.0.1:5500/profile-update.html?user_id=${my_id}`
+}
+
+
+// 다른 사람의 마이페이지로 가기.
+function loadUserMypage(user_id) {
+    window.location.href = `http://127.0.0.1:5500/profile.html?user_id=${user_id}`
 }
