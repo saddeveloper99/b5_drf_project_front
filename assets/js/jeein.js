@@ -153,7 +153,7 @@ async function handleProfileUpdate() {
     const preference = document.getElementById("ji_profile_preference").value
     const introduction = document.getElementById("ji_profile_introduction").value
 
-    console.log(password, username, gender, date_of_birth, preference, introduction, image);
+    console.log(password, username, gender, date_of_birth, preference, introduction);//, image);
 
     const response = await fetch('http://127.0.0.1:8000/user/profile/', {
         headers: {
@@ -173,7 +173,7 @@ async function handleProfileUpdate() {
     })
 
     // 프로필 수정 성공하면 메인페이지로 가기
-    // window.location.href = "index.html"
+    window.location.href = "index.html"
 
 }
 
@@ -314,11 +314,14 @@ async function loadProfileNotNew(user_id) {
 function loadNavMenu() {
 
     menu = document.getElementById("ji_login_logout")
+    mymenu = document.getElementById("ji_my_nav_menu")
+
     if (localStorage.getItem("access") != null) {
-        // menu.remove()
         menu.innerText = "Welcome!"
+        mymenu.innerText = "MyPage"
     } else {
         menu.innerText = "LogIn/SignUp"
+        mymenu.remove()
     }
 }
 
