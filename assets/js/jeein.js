@@ -348,3 +348,134 @@ async function handleDeactivate() {
     response_json = await response.json()
     console.log(response_json)
 }
+
+
+//팔로우 리스트 페이지 로드
+async function loadFollowList() {
+
+    const response = await fetch(`http://127.0.0.1:8000/user/follow/`, {
+        headers: {
+            "content-type": "application/json",
+            "Authorization": "Bearer " + localStorage.getItem("access")
+        },
+        method: "GET"
+    })
+
+    response_json = await response.json()
+
+    const follower_count = document.getElementById("ji_follower_count");
+    follower_count.innerText = "Follower " + response_json[0].followers_count + "명";
+
+    const following_count = document.getElementById("ji_following_count");
+    following_count.innerText = "Following " + response_json[0].followings_count + "명";
+
+    const followers = Object.values(response_json[2])
+
+    followers.forEach(follower => {
+
+        const template = document.createElement("section");
+        template.setAttribute("class", "box feature-ji")
+        if (follower[2] == '') {
+            template.innerHTML = `
+        <div class="row">
+            <div class="col-4" style="margin-bottom: -4%;">
+                <a href="#">
+                    <div class="image featured-ji">
+                        <img src="images/happy_rtan.gif" alt="" />
+                    </div>
+                </a>
+            </div>
+            <div class="col-8">
+                <h3 style="margin-bottom: 0;">${follower[0]}</h3>
+                <p style="margin-bottom: 10%;">${follower[1]}</p>
+                <button type="button" class="button alt"
+                    style="float: right; margin:3% 5% 5% 0;" onclick="handleFollow(${follower[3]})">팔로우</button>
+            </div>
+        </div>
+    </section>`} else {
+            {
+                template.innerHTML = `
+            <div class="row">
+                <div class="col-4" style="margin-bottom: -4%;">
+                    <a href="#">
+                        <div class="image featured-ji">
+                            <img src="http://127.0.0.1:8000/media/${follower[2]}/" alt="" />
+                        </div>
+                    </a>
+                </div>
+                <div class="col-8">
+                    <h3 style="margin-bottom: 0;">${follower[0]}</h3>
+                    <p style="margin-bottom: 10%;">${follower[1]}</p>
+                    <button type="button" class="button alt"
+                        style="float: right; margin:3% 5% 5% 0;" onclick="handleFollow(${follower[3]})">팔로우</button>
+                </div>
+            </div>
+        </section>`}
+        }
+        const follower_list = document.getElementById("ji_follower-container")
+        follower_list.appendChild(template)
+    })
+
+    const followings = Object.values(response_json[1])
+
+    followings.forEach(following => {
+
+        const template = document.createElement("section");
+        template.setAttribute("class", "box feature-ji")
+        if (following[2] == '') {
+            template.innerHTML = `
+        <div class="row">
+            <div class="col-4" style="margin-bottom: -4%;">
+                <a href="#">
+                    <div class="image featured-ji">
+                        <img src="images/happy_rtan.gif" alt="" />
+                    </div>
+                </a>
+            </div>
+            <div class="col-8">
+                <h3 style="margin-bottom: 0;">${following[0]}</h3>
+                <p style="margin-bottom: 10%;">${following[1]}</p>
+                <button type="button" class="button alt"
+                    style="float: right; margin:3% 5% 5% 0; color: crimson;" onclick="handleFollow(${following[3]})">팔로우 취소</button>
+            </div>
+        </div>
+    </section>`} else {
+            {
+                template.innerHTML = `
+            <div class="row">
+                <div class="col-4" style="margin-bottom: -4%;">
+                    <a href="#">
+                        <div class="image featured-ji">
+                            <img src="http://127.0.0.1:8000/media/${following[2]}/" alt="" />
+                        </div>
+                    </a>
+                </div>
+                <div class="col-8">
+                    <h3 style="margin-bottom: 0;">${following[0]}</h3>
+                    <p style="margin-bottom: 10%;">${following[1]}</p>
+                    <button type="button" class="button alt"
+                        style="float: right; margin:3% 5% 5% 0; color: crimson;" onclick="handleFollow(${following[3]})">팔로우 취소</button>
+                </div>
+            </div>
+        </section>`}
+        }
+        const following_list = document.getElementById("ji_following-container")
+        following_list.appendChild(template)
+    })
+
+}
+
+
+async function handleFollow(user_id) {
+
+    const response = await fetch(`http://127.0.0.1:8000/user/follow/${user_id}/`, {
+        headers: {
+            "content-type": "application/json",
+            "Authorization": "Bearer " + localStorage.getItem("access")
+        },
+        method: "POST"
+    })
+
+    window.location.href = "follow-list.html"
+
+}
