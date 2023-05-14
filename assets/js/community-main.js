@@ -1,38 +1,13 @@
-import { FRONT_BASE_URL, getPostings } from './community-api.js';
+import { viewPostingList } from './community-api.js';
 
-window.postingDetail = function (POSITING_ID) {
-    window.location.href = `${FRONT_BASE_URL}/community-detail.html?posting_id=${POSITING_ID}`
-    console.log(POSITING_ID)
+// 로드 시 게시글 목록 가져오기
+window.onload = async function handlePostingList() {
+    viewPostingList();
 }
 
-window.onload = async function communityPostingList() {
-    const postings = await getPostings()
-    postings.forEach(posting => {
-        const template = document.createElement("div");
-        console.log(posting.id)
-        template.innerHTML = `<div class="row" data-posting-id="${posting.id}" style="margin-bottom: 5%;">
-                                <div class="gw-click" onclick="postingDetail(${posting.id})" style="width: 70%;">
-                                <div style="display: flex;">
-                                <h3 class="gw-post-title">${posting.title}</h3>
-                                </div>
-                                <div class="gw-post-content">${posting.content}</div>
-                                </div>
-                                <div class="gw-write-image-container">
-                                <img class="gw-write-image" src="${posting.image}" alt="">
-                                </div>
-                                <div style="display: flex;">
-                                <div style="margin-right: 10px;">
-                                <img class="gw-main-writer-image" src="${posting.user_image}" alt="">
-                                </div>
-                                <div class="gw-post-writer">${posting.username}</div>
-                                </div>
-                                <div class="gw-main-comments-count">댓글 ${posting.comment_count}</div>
-                                <div style="margin: 0 5% 0 0;">
-                                <object class="like-icon" data="assets/css/images/heart.svg" type="image/svg+xml"></object>
-                                <span class="gw-post-likes">${posting.like_count}</span>
-                                </div>
-                             </div>`
-        const posting_list = document.getElementById("gw-container")
-        posting_list.appendChild(template)
-    });
-}
+// 글쓰기 버튼 클릭 시 작성페이지로 이동
+// const writeBtn = document.getElementById("editButton");
+// writeBtn.addEventListener("click", handleWriteButtonClick);
+
+/* if token으로 작성 권한 1차적으로 걸러내기
+여기서 넘어가도 토큰이 유효한지 작성버튼 누를 때 다시 검사함 */
