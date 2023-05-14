@@ -207,6 +207,7 @@ async function loadProfile(user_id) {
 }
 
 async function loadMypage(user_id) {
+
     const response = await fetch(`http://127.0.0.1:8000/user/mypage/${user_id}/`, { method: "GET" })
 
     response_json = await response.json()
@@ -589,4 +590,16 @@ function handleCheckIsLoggedIn() {
     } else {
         window.location.href = "signup.html"
     }
+}
+
+
+// 자기 자신의 마이페이지로 가기 // 오류
+function loadMyMypage() {
+    const my_id = JSON.parse(localStorage.getItem("payload")).user_id
+    loadMypage(my_id)
+    loadProfile(my_id)
+    window.location.href = "profile.html"
+    console.log("여기까지 가나???")
+    loadMypage(my_id)
+    loadProfile(my_id)
 }
