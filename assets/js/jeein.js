@@ -593,13 +593,8 @@ function handleCheckIsLoggedIn() {
 }
 
 
-// 자기 자신의 마이페이지로 가기 // 오류
+// 자기 자신의 마이페이지로 가기. 로그인 했을 때만 보이는 메뉴, MyPage를 클릭했을 때 실행
 function loadMyMypage() {
     const my_id = JSON.parse(localStorage.getItem("payload")).user_id
-    loadMypage(my_id)
-    loadProfile(my_id)
-    window.location.href = "profile.html"
-    console.log("여기까지 가나???")
-    loadMypage(my_id)
-    loadProfile(my_id)
+    window.location.href = `http://127.0.0.1:5500/profile.html?user_id=${my_id}`
 }
