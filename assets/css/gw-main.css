@@ -16,7 +16,7 @@
     margin-top: 1em;
     height: 38px;
     padding: 0 1em;
-    margin-right: 5em;
+    margin-right: 1em;
 }
 
 /* 회색 버튼 */
@@ -59,8 +59,9 @@
 
 /* 각각 포스팅 박스 */
 .gw-posting-each {
-    border-radius: 30px;
-    background-color: rgba(181, 183, 184, 0.473);
+    border: 1px solid;
+    border-radius: 10px;
+    background-color: rgba(204, 198, 180, 0.473);
     margin-bottom: 10px;
     padding: 3em;
 }
@@ -94,3 +95,26 @@
     max-width: 150px;
     max-height: 150px;
 } */
+
+.gw-pagebtn {
+    list-style: none;
+    padding: 0 1em;
+    margin: 0 1px;
+    background-color: rgba(204, 198, 180, 0.473);
+    border: 1px solid;
+    border-radius: 5px;
+}
+
+#gw-pagebtn {
+    list-style: none;
+}
+
+#gw-pagenum {
+    font-weight: 600;
+    font-size: 1em;
+}
+
+.gw-pagenum {
+    font-weight: 600;
+    font-size: 1em;
+}
