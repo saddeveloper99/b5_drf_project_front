@@ -75,7 +75,7 @@
 							<!-- <input class="gw-search-box" type="text"> -->
 						</div>
 						<div class="gw-box-right">
-							<button class="gw-btn-small">글쓰기</button>
+							<button id="gw-gowrite" class="gw-btn-small">글쓰기</button>
 						</div>
 					</div>
 					<div class="gw-divider"></div>
@@ -84,10 +84,29 @@
 					<!-- 게시글 목록  -->
 					<div id="gw-posting-list">
 						<div id="gw-posting">
-							<!-- 게시글 예시-->
 							<div id="gw-container">
 							</div>
 							<hr>
+							<div id="gw-pagebox">
+								<ul class="gw-paginate" id="gw-paginate"
+									style="display: flex; justify-content: center;">
+									<!-- <li class="gw-pagebtn">
+										<a id="page_item_pre" class="gw-pagenum" href="#" aria-label="Previous">
+											<span aria-hidden="true">&laquo;</span>
+										</a>
+									</li>
+									<li id="gw-pagebtn">
+										<li class="gw-pagebtn"><a id="gw-pagenum1" href="#">1</a></li>
+										<li class="gw-pagebtn"><a id="gw-pagenum2" href="#">2</a></li>
+										<li class="gw-pagebtn"><a id="gw-pagenum3" href="#">3</a></li>
+									</li>
+									<li class="gw-pagebtn">
+										<a id="page_item_next" class="gw-pagenum" href="#" aria-label="Next">
+											<span aria-hidden="true">&raquo;</span>
+										</a>
+									</li> -->
+								</ul>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -185,7 +204,6 @@
 	</div>
 
 	<!-- Scripts -->
-
 	<script src="assets/js/jquery.min.js"></script>
 	<script src="assets/js/jquery.dropotron.min.js"></script>
 	<script src="assets/js/browser.min.js"></script>
