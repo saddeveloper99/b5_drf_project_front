@@ -2088,8 +2088,8 @@ ul.menu li:first-child {
 	display: inline-block;
 }
 
-#logo h1 {
-	background: #ff4486;
+#logo .logobox {
+	/* background: #ff4486; */
 	color: #fff;
 	border-radius: 6px;
 	font-family: 'Oleo Script', serif;
@@ -2099,6 +2099,11 @@ ul.menu li:first-child {
 	letter-spacing: 0.05em;
 	display: inline-block;
 	vertical-align: middle;
+}
+
+#logo .logobox img {
+	object-fit: contain;
+	width: 250px;
 }
 
 #logo span {
