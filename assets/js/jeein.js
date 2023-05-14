@@ -481,9 +481,10 @@ async function handleFollow(user_id) {
 }
 
 
-
+// 마이피드페이지 로드
 async function loadMyfeed() {
 
+    // 팔로우한 사람들이 작성한 게시글과 리뷰 정보 가져오기
     const response = await fetch(`http://127.0.0.1:8000/user/myfeed/`, {
         headers: {
             "content-type": "application/json",
@@ -494,9 +495,7 @@ async function loadMyfeed() {
 
     response_json = await response.json()
 
-    console.log(response_json[0])
-    console.log(response_json[1])
-
+    // 팔로우한 사람들의 게시글(게시글 제목)
     const follow_postings = document.getElementById("ji_myfeed_posting")
 
     const postings = response_json[0]
@@ -510,7 +509,7 @@ async function loadMyfeed() {
 
     })
 
-
+    //팔로우한 사람들의 리뷰(리뷰 내용)
     const follow_reviews = document.getElementById("ji_myfeed_review")
 
     const reviews = response_json[1]
@@ -524,6 +523,7 @@ async function loadMyfeed() {
 
     })
 
+    // 좋아요한 게시글, 상품, 리뷰 정보 가져오기
     const response_like = await fetch(`http://127.0.0.1:8000/user/myfeed/like/`, {
         headers: {
             "content-type": "application/json",
@@ -534,10 +534,7 @@ async function loadMyfeed() {
 
     response_json = await response_like.json()
 
-    console.log(response_json)
-    console.log(response_json[0])
-    console.log(response_json[1])
-
+    // 좋아요한 게시글(게시글 제목)
     const like_postings = document.getElementById("ji_myfeed_like_posting")
 
     const myfeed_like_postings = response_json[1]
@@ -551,7 +548,7 @@ async function loadMyfeed() {
 
     })
 
-
+    // 좋아요한 상품(상품명)
     const like_products = document.getElementById("ji_myfeed_like_product")
 
     const myfeed_like_products = response_json[0].like_products
@@ -566,7 +563,7 @@ async function loadMyfeed() {
 
     })
 
-
+    // 좋아요한 리뷰(리뷰 내용)
     const like_reviews = document.getElementById("ji_myfeed_like_review")
 
     const myfeed_like_reviews = response_json[0].like_reviews
@@ -580,9 +577,4 @@ async function loadMyfeed() {
         like_reviews.appendChild(list)
 
     })
-
-
-    // "ji_myfeed_like_posting"
-    // const follower_count = document.getElementById("ji_follower_count");
-    // follower_count.innerText = "Follower " + response_json[0].followers_count + "명";
 }
