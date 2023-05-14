@@ -11,8 +11,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/main.css" />
-	<link rel="stylesheet" href="main2.css" />
-	<link rel="stylesheet" href="index.js" />
+	<link rel="stylesheet" href="assets/css/elisa.css" />
 </head>
 
 <body class="is-preload no-sidebar">
@@ -64,41 +63,43 @@
 			<div class="article_wrapper">
 				<h2>상품 등록하기</h2>
 				<!-- <form> -->
-				<div class="wrapper">
-					<div class="form-row">
-						<div class="name">상품 이름</div>
-						<div class="input-group">
-							<input type=text class="textarea1" name="product_name"></input>
+				<form id="product-post-form">
+					<div class="wrapper">
+						<div class="form-row">
+							<div class="name">상품 이름</div>
+							<div class="input-group">
+								<input class="textarea1" type="text" name="product_name"></input>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="name">상품 설명</div>
+							<div class="input-group">
+								<input class="textarea2" type="text" name="product_description"></input>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="name">브랜드</div>
+							<div class="input-group">
+								<input class="textarea1" type="text" name="product_brand"></input>
+							</div>
+						</div>
+						<!-- 이미지업로드 -->
+						<div class="form-row">
+							<div class="name">상품 이미지</div>
+							<div class="input-group js-input-file">
+								<span class="input-file__info"></span>
+								<label class="label--file" for="file">
+									<input class="input-file" type="file" name="file_cv" id="file">
+								</label>
+							</div>
+						</div>
+						<!-- 등록, 취소 버튼 -->
+						<div class="button-container">
+							<button onclick="submitPost()" class="btn btn-primary" id="submit-btn">등록</button>
+							<button onclick="cancelForm()" class="btn btn-secondary" id="cancel-btn">취소</button>
 						</div>
 					</div>
-					<div class="form-row">
-						<div class="name">상품 설명</div>
-						<div class="input-group">
-							<textarea class="textarea2" name="product_description"></textarea>
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="name">브랜드</div>
-						<div class="input-group">
-							<input type=text class="textarea1" name="product_brand"></input>
-						</div>
-					</div>
-					<!-- 이미지업로드 -->
-					<div class="form-row">
-						<div class="name">상품 이미지</div>
-						<div class="input-group js-input-file">
-							<span class="input-file__info"></span>
-							<label class="label--file" for="file">
-								<input class="input-file" type="file" name="file_cv" id="file">
-							</label>
-						</div>
-					</div>
-					<!-- 등록, 취소 버튼 -->
-					<div class="button-container">
-						<button onclick="submitPost()" class="btn btn-primary" id="submit-btn">등록</button>
-						<button onclick="cancelForm()" class="btn btn-secondary" id="cancel-btn">취소</button>
-					</div>
-				</div>
+				</form>
 				<!-- </form> -->
 			</div>
 		</div>
@@ -200,6 +201,7 @@
 	<script src="assets/js/breakpoints.min.js"></script>
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
+	<script src="assets/js/product-post.js"></script>
 
 </body>
 
