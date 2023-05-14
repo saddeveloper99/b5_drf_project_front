@@ -1,10 +1,10 @@
 import { writePosting } from "./community-api.js";
 
-console.log("11231232")
-
-function handleWriteButtonClick() {
+// writePosting으로 게시글 작성
+function handleSubmitButtonClick() {
     writePosting();
 }
 
-const writeButton = document.getElementById("writeButton");
-writeButton.addEventListener("click", handleWriteButtonClick);
+// 게시글 작성 버튼 클릭 시 handleSubmitButtonClick 호출
+const submitBtn = document.getElementById("writeButton");
+submitBtn.addEventListener("click", handleSubmitButtonClick);
