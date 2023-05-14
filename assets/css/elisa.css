@@ -3,9 +3,23 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:400,700,300);
 
 
-/* product_edit page */
+/* 메인 피드 페이지 */
 
 
+#ranks-wrapper {
+	background-color: white;
+	padding-top: 100px;
+}
+
+.box.feature {
+	margin: 20px 0 0 0 !important;
+	padding: 0;
+
+	border: solid 1px;
+	border-color: gainsboro;
+}
+
+/* 탑 랭크 */
 .article_wrapper {
 	width: 1000px;
 	height: 1000px;
@@ -17,14 +31,16 @@
 	align-items: center;
 }
 
-.wrapper {
+
+
+.article_wrapper .wrapper {
 	width: 1000px;
 	height: 1000px;
 	/* background: pink; */
 	margin-top: 80px;
 }
 
-.form-row {
+.article_wrapper .form-row {
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -moz-box;
@@ -41,14 +57,14 @@
 	padding: 10px 55px;
 }
 
-.form-row .name {
+.article_wrapper .form-row .name {
 	width: 188px;
 	color: #333;
 	font-size: 15px;
 	font-weight: 700;
 }
 
-.textarea1 {
+.article_wrapper .textarea1 {
 	width: 680px;
 
 	background: 0 0;
@@ -68,10 +84,12 @@
 	resize: none;
 }
 
-.textarea2 {
+.article_wrapper .textarea2 {
 	width: 680px;
 	height: 300px;
 
+	/* vertical-align:; */
+
 	background: 0 0;
 	line-height: 38px;
 	border: 1px solid #ccc;
@@ -89,53 +107,9 @@
 	resize: none;
 }
 
-
-
-/* 이미지업로드 */
-
-
-
-/* 등록, 취소  버튼 */
-.button-container {
-	display: flex;
-	justify-content: flex-end;
-	margin-top: 80px;
-	/* 버튼과 이전 요소 사이의 간격 조절 */
-}
-
-#submit-btn {
-	background-color: ;
-	color: white;
-	padding: 10px 20px;
-	border: none;
-	border-radius: 4px;
-	cursor: pointer;
-	margin-left: 15px;
-	/* 버튼 간의 간격 조절 */
-}
-
-#cancel-btn {
-	background-color: gray;
-	color: white;
-	padding: 10px 20px;
-	border: none;
-	border-radius: 4px;
-	cursor: pointer;
-	margin-left: 15px;
-}
-
-
-
-
-
-
-
-/* index page */
-
-/* sub rank */
+/* 서브 랭크 */
 #sub-rank-wrapper {
 	background-color: white;
-	margin-top: 60px;
 }
 
 .sub-rank-container {
@@ -172,4 +146,38 @@
 li {
 	line-height: 3;
 	font-size: large;
+}
+
+
+
+
+/* 상품 등록 페이지 */
+
+/* 등록, 취소  버튼 */
+.button-container {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 80px;
+	/* 버튼과 이전 요소 사이의 간격 조절 */
+}
+
+#submit-btn {
+	background-color: ;
+	color: white;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	margin-left: 15px;
+	/* 버튼 간의 간격 조절 */
+}
+
+#cancel-btn {
+	background-color: gray;
+	color: white;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	margin-left: 15px;
 }
