@@ -1,34 +1,78 @@
 export const BACK_BASE_URL = "http://127.0.0.1:8000"
 export const FRONT_BASE_URL = "http://127.0.0.1:5500"
-const token = localStorage.getItem('access')
+export const token = localStorage.getItem('access')
+const pageSize = 5;
+
+// 커뮤니티 클릭 시 커뮤니티 메인 피드로 이동
+const communityHomeBtns = document.querySelectorAll(".gw-community")
+communityHomeBtns.forEach(button => {
+    button.addEventListener("click", () => {
+        window.location.href = `${FRONT_BASE_URL}/community-main.html`;
+    });
+});
 
 // #################### 게시글 리스트 ####################
 
 // 게시글 리스트 GET 요청
-export async function getPostings(POSTING_ID = null) {
-    if (POSTING_ID == null) {
-        const url = `${BACK_BASE_URL}/posting/`
-        const response = await fetch(url, {
-            method: 'GET'
-        })
 
-        if (response.status == 200) {
-            const response_json = await response.json()
-            return response_json
-        } else {
-            console.log("잠시 후 다시 시도해주세요")
-        }
+export async function getPostings() {
+    const url = `${BACK_BASE_URL}/posting/`
+    const response = await fetch(url, {
+        method: 'GET'
+    })
+    const response_json = await response.json()
+
+    if (response.status != 200) {
+        alert("잠시 후 다시 시도해주세요")
     }
+
+    // 총 글의 수로 페이지 수를 구함
+    // response의 next url에서 현재, 다음, 이전페이지 번호를 구함
+    const posting_count = response_json.count
+    const page_count = parseInt(posting_count / pageSize) + 1
+    const page_num = response_json.next.substr(-1) - 1
+    const pre_page = 1
+    const next_page = page_num + 1
+    const paginate = document.getElementById('gw-paginate')
+
+    // 게시글 수가 5개 이하면 페이지 이동 박스 자체가 안보이게
+    if (posting_count < 6) {
+        const pagebox = document.getElementById('gw-pagebox')
+        pagebox.remove();
+        // 페이지 박스 생성
+    } else {
+        paginate.innerHTML = `<li class="gw-pagebtn">
+                                    <a id="page_item_pre" class="gw-pagenum gw-p-move" onclick="pageMove(${pre_page})" data-page="${pre_page}">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="gw-pagebtn">
+                                    <a id="gw-pagenum">${page_num} / ${page_count}</a>
+                                </li>
+                                <li class="gw-pagebtn">
+                                    <a id="page_item_next" class="gw-pagenum gw-p-move" onclick="pageMove(${next_page})" data-page="${next_page}">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>`
+    }
+    // 받아온 데이터로 게시글 보여주기
+    viewPostingList(response_json)
 }
 
-// 게시글 목록 보여주기 
-export async function viewPostingList() {
-    const postings = await getPostings()
+// 게시글 목록 보여주기
+export async function viewPostingList(response_json) {
+
+    const postings = response_json.results
+
+    console.log(response_json)
+
+    const templateBox = document.getElementById('gw-container')
+    templateBox.innerHTML = ''
     postings.forEach(posting => {
         const template = document.createElement("div");
         template.setAttribute("class", "gw-posting-each")
-        console.log(posting.id)
-        template.innerHTML = `<div class="row" data-posting-id="${posting.id}">
+        // console.log(posting.id)
+        template.innerHTML += `<div class="row" data-posting-id="${posting.id}">
                                 <div class="gw-click" onclick="postingDetail(${posting.id})" style="width: 100%;">
                                     <div style="display: flex;">
                                         <h3 class="gw-post-title">${posting.title}</h3>
@@ -66,9 +110,59 @@ export async function viewPostingList() {
             }
         }
         /* 이미지 여러개 시 썸네일 1개만 표시하기? */
-        console.log(images)
+        // console.log(images)
     });
 }
+
+// 페이지 이동 시 함수 response에서 받아온 next url로 현재 페이지 찾기. 
+// 이전이나 다음이 각각 첫페이지나 마지막 페이지면 그거에 맞게 처리. 
+window.pageMove = async function (move) {
+    const url = `${BACK_BASE_URL}/posting/?page=${move}`
+    const response = await fetch(url, {
+        method: 'GET',
+    })
+    const response_json = await response.json()
+    const page_count = parseInt(response_json.count / pageSize) + 1
+
+    let page_num = 0
+    let pre_page = 0
+    let next_page = 0
+
+    if (response_json.previous == null) {
+        page_num = 1
+        pre_page = 1
+        next_page = 2
+
+    } else if (response_json.next == null) {
+        page_num = page_count
+        pre_page = page_num - 1
+        next_page = page_count
+
+    } else {
+        page_num = response_json.next.substr(-1) - 1
+        pre_page = page_num - 1
+        next_page = page_num + 1
+    }
+
+    // 페이지 박스 번호 갱신하기
+    const paginate = document.getElementById('gw-paginate')
+    paginate.innerHTML = `<li class="gw-pagebtn">
+                                <a id="page_item_pre" class="gw-pagenum gw-p-move" onclick="pageMove(${pre_page})" data-page="${pre_page}">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <li class="gw-pagebtn">
+                                <a id="gw-pagenum">${page_num} / ${page_count}</a>
+                            </li>
+                            <li class="gw-pagebtn">
+                                <a id="page_item_next" class="gw-pagenum gw-p-move" onclick="pageMove(${next_page})" data-page="${next_page}">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>`
+    // 페이지 이동했으니 다시 다음페이지 게시글 로드하기
+    viewPostingList(response_json);
+}
+
 
 // 게시글 작성 POST 요청
 export async function writePosting() {
@@ -181,7 +275,6 @@ export async function getEditPosting() {
     } else {
         console.log("잠시 후 다시 시도해주세요")
     }
-
 }
 
 // 게시글 수정 PUT 요청
@@ -288,12 +381,12 @@ export async function viewPostingComment() {
     comments.forEach(comment => {
         const template = document.createElement("div");
         template.setAttribute("class", "gw-comment")
-        template.innerHTML = `  <div class="gw-comment-writer">
-                                    <img class="comment-image" src="${comment.image}" alt="">
-                                    <div class="comment-writer">${comment.username}</div>
-                                    <div style="display: flex; margin:auto 0 auto auto">
-                                        <button class="gw-btn-comment gw-btn-nocolor">수정</button>
-                                        <button class="gw-btn-comment gw-btn-nocolor">삭제</button>
+        template.innerHTML = `<div class= "gw-comment-writer">
+                                <img class="comment-image" src="${comment.image}" alt="">
+                                <div class="comment-writer">${comment.username}</div>
+                                <div style="display: flex; margin:auto 0 auto auto">
+                                    <button class="gw-btn-comment gw-btn-nocolor">수정</button>
+                                    <button class="gw-btn-comment gw-btn-nocolor">삭제</button>
                                     </div>
                                 </div>
                                 <div class="gw-comment-content"
