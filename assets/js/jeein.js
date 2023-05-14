@@ -1,7 +1,7 @@
 // window.onload = () => {
 //     console.log("로딩되었음")
-//     // loadProfile(2)
-//     // loadMypage(2)
+// loadProfile(2)
+// loadMypage(2)
 //     // handleProfileUpdate()
 // }
 // loadProfileNotNew(3)
@@ -478,4 +478,111 @@ async function handleFollow(user_id) {
 
     window.location.href = "follow-list.html"
 
+}
+
+
+
+async function loadMyfeed() {
+
+    const response = await fetch(`http://127.0.0.1:8000/user/myfeed/`, {
+        headers: {
+            "content-type": "application/json",
+            "Authorization": "Bearer " + localStorage.getItem("access")
+        },
+        method: "GET"
+    })
+
+    response_json = await response.json()
+
+    console.log(response_json[0])
+    console.log(response_json[1])
+
+    const follow_postings = document.getElementById("ji_myfeed_posting")
+
+    const postings = response_json[0]
+    postings.slice(0, 5).forEach(posting => {
+        const list = document.createElement("li")
+        const new_posting = document.createElement("a")
+        new_posting.setAttribute("href", "#")
+        new_posting.innerText = posting.title
+        list.appendChild(new_posting)
+        follow_postings.appendChild(list)
+
+    })
+
+
+    const follow_reviews = document.getElementById("ji_myfeed_review")
+
+    const reviews = response_json[1]
+    reviews.slice(0, 5).forEach(element => {
+        const list = document.createElement("li")
+        const new_review = document.createElement("a")
+        new_review.setAttribute("href", "#")
+        new_review.innerText = element.content
+        list.appendChild(new_review)
+        follow_reviews.appendChild(list)
+
+    })
+
+    const response_like = await fetch(`http://127.0.0.1:8000/user/myfeed/like/`, {
+        headers: {
+            "content-type": "application/json",
+            "Authorization": "Bearer " + localStorage.getItem("access")
+        },
+        method: "GET"
+    })
+
+    response_json = await response_like.json()
+
+    console.log(response_json)
+    console.log(response_json[0])
+    console.log(response_json[1])
+
+    const like_postings = document.getElementById("ji_myfeed_like_posting")
+
+    const myfeed_like_postings = response_json[1]
+    myfeed_like_postings.slice(0, 5).forEach(posting => {
+        const list = document.createElement("li")
+        const new_posting = document.createElement("a")
+        new_posting.setAttribute("href", "#")
+        new_posting.innerText = posting.title
+        list.appendChild(new_posting)
+        like_postings.appendChild(list)
+
+    })
+
+
+    const like_products = document.getElementById("ji_myfeed_like_product")
+
+    const myfeed_like_products = response_json[0].like_products
+
+    myfeed_like_products.slice(0, 5).forEach(element => {
+        const list = document.createElement("li")
+        const new_product = document.createElement("a")
+        new_product.setAttribute("href", "#")
+        new_product.innerText = element.name
+        list.appendChild(new_product)
+        like_products.appendChild(list)
+
+    })
+
+
+    const like_reviews = document.getElementById("ji_myfeed_like_review")
+
+    const myfeed_like_reviews = response_json[0].like_reviews
+
+    myfeed_like_reviews.slice(0, 5).forEach(element => {
+        const list = document.createElement("li")
+        const new_review = document.createElement("a")
+        new_review.setAttribute("href", "#")
+        new_review.innerText = element.content
+        list.appendChild(new_review)
+        like_reviews.appendChild(list)
+
+    })
+
+
+    // "ji_myfeed_like_posting"
+    // const follower_count = document.getElementById("ji_follower_count");
+    // follower_count.innerText = "Follower " + response_json[0].followers_count + "명";
 }
