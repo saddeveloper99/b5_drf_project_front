@@ -130,3 +130,29 @@ export async function loadProfileForUpdate(user_id) {
     profile_reviews_count.innerText = response_json_.productreview_set.length;
 
 }
+
+
+
+export async function loadProfileAfterSignup() {
+    if (localStorage.getItem("new") == "True") {
+        localStorage.removeItem("new")
+        const { email, username, gender, date_of_birth } = JSON.parse(localStorage.getItem("user-info"));
+        localStorage.removeItem("user-info");
+        // console.log(email, username, gender, date_of_birth);
+
+        const profile_email = document.getElementById("ji_profile_email");
+        profile_email.innerText = email;
+        const profile_username = document.getElementById("ji_profile_username");
+        profile_username.setAttribute("placeholder", username);
+        const profile_date_or_birth = document.getElementById("ji_profile_date_of_birth");
+        profile_date_or_birth.setAttribute("placeholder", date_of_birth);
+        if (gender == "F") {
+            const option_female = document.getElementById("ji_option_female");
+            option_female.setAttribute("selected", "selected");
+        } else {
+            const option_male = document.getElementById("ji_option_male");
+            option_male.setAttribute("selected", "selected");
+        }
+    }
+    else { }
+}
