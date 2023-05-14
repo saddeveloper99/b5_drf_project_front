@@ -124,11 +124,8 @@ async function handleLogin() {
     localStorage.setItem("payload", jsonPayload);
     const payload_parse = JSON.parse(jsonPayload)
 
-    console.log(payload_parse.name)
-    // 로그인 완료되면 Login버튼에 payload_parse.name 넣어주기 해야함
-
     // 로그인 성공하면 메인페이지로 가기
-    // window.location.href = "index.html"
+    window.location.href = "index.html"
 
 }
 
@@ -318,7 +315,8 @@ function loadNavMenu() {
 
     menu = document.getElementById("ji_login_logout")
     if (localStorage.getItem("access") != null) {
-        menu.remove()
+        // menu.remove()
+        menu.innerText = "Welcome!"
     } else {
         menu.innerText = "LogIn/SignUp"
     }
