@@ -333,3 +333,18 @@ function handleLogout() {
     window.location.href = "index.html"
 
 }
+
+// 회원 탈퇴 후 로그아웃
+async function handleDeactivate() {
+
+    const response = await fetch(`http://127.0.0.1:8000/user/profile/`, {
+        headers: {
+            "content-type": "application/json",
+            "Authorization": "Bearer " + localStorage.getItem("access")
+        },
+        method: "DELETE"
+    })
+    handleLogout()
+    response_json = await response.json()
+    console.log(response_json)
+}
