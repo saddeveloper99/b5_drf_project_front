@@ -1,99 +1,54 @@
-console.log("ffoefko")
-import { getPostingDetail, writeComment, getPostingComment } from './community-api.js';
+import {
+    FRONT_BASE_URL,
+    getPostingDetail,
+    getPostingComment,
+    viewPostingDetail,
+    viewPostingComment,
+    DeletePosting,
+    writeComment,
+} from './community-api.js';
 
-// 게시글 상세 내용, 유저 미니프로필 가져오기 핸들러
-window.onload = async function communityPostingDetail() {
+// 로드 시 게시글 상세 내용 + 유저 미니프로필 + 댓글 가져오기
+window.onload = async function PostingDetail() {
     const urlParams = new URLSearchParams(window.location.search);
     const POSTING_ID = urlParams.get('posting_id');
-    const posting = await getPostingDetail(POSTING_ID)
-    const comments = await getPostingComment(POSTING_ID)
-    communityPostingContent(posting)
-    communityPostingComment(comments)
-
+    const posting = await getPostingDetail(POSTING_ID) /* posting에 게시글 작성 유저 정보도 포함(시리얼라이저) */
+    const comments = await getPostingComment(POSTING_ID) /* comments에 댓글 작성 유저 정보도 포함(시리얼라이저) */
+    viewPostingDetail(posting)
+    viewPostingComment(comments)
 }
 
-
-async function communityPostingContent(posting) {
-    // console.log(posting)
-    // 작성자 
-    const writer = document.querySelectorAll('.gw-writer')
-    writer.forEach(name => {
-        name.innerHTML = posting.username;
-    });
-
-    const writerImages = document.querySelectorAll('.gw-w-img');
-    writerImages.forEach(image => {
-        image.src = posting.user_image;
-    });
-
-    const following = document.getElementById('gw-b-following')
-    following.innerHTML = posting.followings_count
-
-    const follower = document.getElementById('gw-b-follower')
-    follower.innerHTML = posting.followers_count
-
-    const introduction = document.getElementById('gw-banner-bio')
-    introduction.innerHTML = posting.introduction
-
-    const userId = document.getElementById('gw-writer-image')
-    userId.setAttribute('data-user-id', posting.user_id);
-
-    // 게시글
-    const title = document.getElementById('gw-title');
-    title.innerHTML = posting.title;
-
-    const content = document.getElementById('gw-content');
-    content.innerHTML = posting.content;
-
-    const updatedAt = document.getElementById('gw-created');
-    updatedAt.innerHTML = posting.updated_at;
-
-    const isUpdated = document.getElementById('gw-is-updated');
-    const a = posting.is_updated ? "수정일" : "작성일";
-    isUpdated.innerHTML = a
-
-    const likeCount = document.getElementById('gw-like');
-    likeCount.innerHTML = posting.like_count;
-}
-
-// 코멘트 가져오기 핸들러
-async function communityPostingComment() {
+// 수정 버튼 클릭 시 수정 페이지로 이동 
+const updateBtn = document.getElementById("gw-edit-btn");
+updateBtn.addEventListener("click", () => {
     const urlParams = new URLSearchParams(window.location.search);
-    const POSITING_ID = urlParams.get('posting_id');
-    const comments = await getPostingComment(POSITING_ID)
+    const postingId = urlParams.get("posting_id");
+    const updateUrl = `${FRONT_BASE_URL}/community-update.html?posting_id=${postingId}`;
+    window.location.replace(updateUrl);
+});
 
-    comments.forEach(comment => {
-        const template = document.createElement("div");
-        template.setAttribute("class", "gw-comment")
-        template.innerHTML = `  <div class="gw-comment-writer">
-                                    <img class="comment-image" src="${comment.image}" alt="">
-                                    <div class="comment-writer">${comment.username}</div>
-                                    <div style="display: flex; margin:auto 0 auto auto">
-                                        <button class="gw-btn-comment gw-btn-nocolor">수정</button>
-                                        <button class="gw-btn-comment gw-btn-nocolor">삭제</button>
-                                    </div>
-                                </div>
-                                <div class="gw-comment-content"
-                                    style="background-color:rgb(228, 228, 228); padding: 2%; border-radius: 10px;">
-                                    <div style="width: 90%;">${comment.content}
-                                    </div>
-                                </div>`
-        const comment_list = document.getElementById("gw-comment-list")
-        comment_list.appendChild(template)
-        console.log(comment)
-    })
+// 삭제 버튼 클릭 시 handleDelteButtonClick 함수 호출
+const deleteBtn = document.getElementById("gw-delete-btn");
+deleteBtn.addEventListener("click", handleDelteButtonClick);
 
+// DeletePosting으로 게시글 삭제
+function handleDelteButtonClick() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const POSTING_ID = urlParams.get('posting_id');
+    console.log("ok")
+    DeletePosting(POSTING_ID);
 }
 
-// 댓글 작성
+// 댓글 작성 버튼 클릭 시 handleCommentWriteBtnClick 호출
+const writeButton = document.getElementById("gw-w-comment");
+writeButton.addEventListener("click", handleCommentWriteBtnClick);
+
+// writeComment로 댓글 작성
 function handleCommentWriteBtnClick() {
     const urlParams = new URLSearchParams(window.location.search);
     const POSITING_ID = urlParams.get('posting_id');
     writeComment(POSITING_ID);
 }
-
-const writeButton = document.getElementById("gw-w-comment");
-writeButton.addEventListener("click", handleCommentWriteBtnClick);
 
 // 좋아요 버튼
 const likeButton = document.querySelector('.like-button');

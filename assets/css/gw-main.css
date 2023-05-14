@@ -1,13 +1,16 @@
+/* 중앙 정렬 */
 .gw-centered {
     margin: 0 auto;
 }
 
+/* 디바이더 */
 .gw-divider {
     margin: 3em 0;
     height: 1px;
     background: rgb(212, 212, 212)
 }
 
+/* 버튼 작은거 */
 .gw-btn-small {
     font-size: 1em;
     margin-top: 1em;
@@ -16,24 +19,29 @@
     margin-right: 5em;
 }
 
+/* 회색 버튼 */
 .gw-btn-nocolor {
     background-color: rgb(168, 164, 164);
 }
 
+/* 상단 박스 */
 .gw-box {
     display: flex;
     justify-content: space-between;
     margin-bottom: 50px;
 }
 
+/* 상단 박스 우측 */
 .gw-box-right {
     margin-left: auto;
 }
 
+/* 상단 박스 좌측 */
 .gw-box-left {
     margin-right: auto;
 }
 
+/* 검색창(임시) */
 .gw-search-box {
     height: 38px;
     width: 250px;
@@ -41,16 +49,43 @@
     border-radius: 20px;
 }
 
+
+/* 게시글 리스트 항목들 */
+/* 작성자 이미지 */
 .gw-main-writer-image {
     max-width: 40px;
     border-radius: 50%;
 }
 
+/* 각각 포스팅 박스 */
+.gw-posting-each {
+    border-radius: 30px;
+    background-color: rgba(181, 183, 184, 0.473);
+    margin-bottom: 10px;
+    padding: 3em;
+}
+
+/* 포스팅 내용(사진 이미지 포함) */
+.gw-post-content {
+    width: 100%;
+}
+
+/* 포스팅 이미지 */
+/* margin: 0 0 0 auto; */
+.gw-summer-image {
+    float: right;
+    object-fit: cover;
+    width: 200px;
+    height: 200px;
+}
+
+/* 댓글 개수 */
 .gw-main-comments-count {
     margin: 0 0 0 auto;
 }
 
-.gw-write-image-container {
+/* 포스팅 이미지(summernote 사용으로 미사용) */
+/* .gw-write-image-container {
     margin-left: 5%;
     width: 25%;
 }
@@ -58,4 +93,4 @@
 .gw-write-image {
     max-width: 150px;
     max-height: 150px;
-}
+} */
