@@ -4,8 +4,8 @@
 //     // loadMypage(2)
 //     // handleProfileUpdate()
 // }
-// loadProfileNotNew(2)
-loadNavMenu()
+// loadProfileNotNew(3)
+// loadNavMenu()
 
 async function handleSignup() {
     const email = document.getElementById("ji_signup_email").value
@@ -145,19 +145,19 @@ async function handleMock() {
     console.log(response)
 }
 
-
+// 이미지 오류
 async function handleProfileUpdate() {
     const email = JSON.parse(localStorage.getItem("payload")).email
+    // const image = document.getElementById("file").files[0].name
     const username = document.getElementById("ji_profile_username").value
     const password = document.getElementById("ji_profile_password").value
     const gender = document.getElementById("ji_profile_gender").value
     const date_of_birth = document.getElementById("ji_profile_date_of_birth").value
     const preference = document.getElementById("ji_profile_preference").value
     const introduction = document.getElementById("ji_profile_introduction").value
-    console.log(password, username, gender, date_of_birth, preference, introduction);
 
-    // console.log(JSON.parse(localStorage.getItem("payload")).user_id)
-    window.location.href = "index.html"
+    console.log(password, username, gender, date_of_birth, preference, introduction, image);
+
     const response = await fetch('http://127.0.0.1:8000/user/profile/', {
         headers: {
             "content-type": "application/json",
@@ -166,14 +166,17 @@ async function handleProfileUpdate() {
         method: "PUT",
         body: JSON.stringify({
             "email": email,
+            // "image": image,
             "password": password,
             "username": username,
-            "gender": gender
+            "gender": gender,
+            "preference": preference,
+            "introduction": introduction
         })
     })
 
     // 프로필 수정 성공하면 메인페이지로 가기
-    window.location.href = "index.html"
+    // window.location.href = "index.html"
 
 }
 
@@ -251,10 +254,13 @@ async function loadProfileNotNew(user_id) {
 
     const profile_email = document.getElementById("ji_profile_email");
     profile_email.innerText = response_json.email;
+
     const profile_username = document.getElementById("ji_profile_username");
     profile_username.setAttribute("placeholder", response_json.username);
+
     const profile_date_or_birth = document.getElementById("ji_profile_date_of_birth");
     profile_date_or_birth.setAttribute("placeholder", response_json.date_of_birth);
+
     if (response_json.gender == "F") {
         const option_female = document.getElementById("ji_option_female");
         option_female.setAttribute("selected", "selected");
@@ -264,22 +270,37 @@ async function loadProfileNotNew(user_id) {
     }
 
     const profile_image = document.getElementById("profile_image");
-    profile_image.setAttribute("src", `http://127.0.0.1:8000${response_json.image}`);
+    if (response_json.image == null) {
+        profile_image.setAttribute("src", "images/happy_rtan.gif");
+    } else {
+        profile_image.setAttribute("src", `http://127.0.0.1:8000${response_json.image}`);
+    }
+
     const profile_followers_count = document.getElementById("profile_followers_count");
     profile_followers_count.innerText = response_json.followers_count;
+
     const profile_followings_count = document.getElementById("profile_followings_count");
     profile_followings_count.innerText = response_json.followings_count;
 
     const profile_introduction = document.getElementById("ji_profile_introduction");
-    profile_introduction.setAttribute("placeholder", response_json.introduction);
-
     const profile_introduction_up = document.getElementById("profile_introduction");
-    profile_introduction_up.innerText = response_json.introduction;
+    if (response_json.introduction == null) {
+        profile_introduction.setAttribute("placeholder", "자기소개");
+        profile_introduction_up.innerText = "자기소개를 작성해주세요.";
+    } else {
+        profile_introduction.setAttribute("placeholder", response_json.introduction);
+        profile_introduction_up.innerText = response_json.introduction;
+    }
 
     const profile_date_of_birth = document.getElementById("ji_profile_date_of_birth");
     profile_date_of_birth.setAttribute("placeholder", response_json.date_of_birth);
+
     const profile_preference = document.getElementById("ji_profile_preference");
-    profile_preference.setAttribute("placeholder", response_json.preference);
+    if (response_json.preference == null) {
+        profile_preference.setAttribute("placeholder", "선호 음료");
+    } else {
+        profile_preference.setAttribute("placeholder", response_json.preference);
+    }
 
     const response_writings = await fetch(`http://127.0.0.1:8000/user/mypage/${user_id}/`, { method: "GET" })
 
