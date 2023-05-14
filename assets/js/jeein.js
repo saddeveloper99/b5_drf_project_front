@@ -598,3 +598,9 @@ function loadMyMypage() {
     const my_id = JSON.parse(localStorage.getItem("payload")).user_id
     window.location.href = `http://127.0.0.1:5500/profile.html?user_id=${my_id}`
 }
+
+
+function loadMyMyProfile() {
+    const my_id = JSON.parse(localStorage.getItem("payload")).user_id
+    window.location.href = `http://127.0.0.1:5500/profile-update.html?user_id=${my_id}`
+}
