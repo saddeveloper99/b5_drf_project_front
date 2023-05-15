@@ -30,27 +30,25 @@
 				<!-- Nav -->
 				<nav id="nav">
 					<ul>
-						<li><a href="index.html">Welcome</a></li>
+						<li><a onclick="handleCheckIsLoggedIn()" id="ji_login_logout" style="cursor: pointer;"></a></li>
 						<li>
-							<a href="#">Dropdown</a>
+							<a id="ji_my_nav_menu" onclick="loadMyMypage()"></a>
 							<ul>
-								<li><a href="profile.html">Lorem ipsum dolor</a></li>
-								<li><a href="#">Magna phasellus</a></li>
-								<li>
-									<a href="#">Phasellus consequat</a>
-									<ul>
-										<li><a href="#">Lorem ipsum dolor</a></li>
-										<li><a href="#">Phasellus consequat</a></li>
-										<li><a href="#">Magna phasellus</a></li>
-										<li><a href="#">Etiam dolore nisl</a></li>
-									</ul>
-								</li>
-								<li><a href="#">Veroeros feugiat</a></li>
+								<li><a onclick="loadMyMypage()">My Page</a></li>
+								<li><a href="myfeed.html">My Feed</a></li>
+								<li><a onclick="loadMyMyProfile()">My Profile</a></li>
+								<li><a href="follow-list.html">My Follow</a></li>
+								<li><a onclick="handleLogout()" style="cursor: pointer;">Log Out</a></li>
 							</ul>
 						</li>
-						<li><a href="left-sidebar.html">Left Sidebar</a></li>
-						<li><a href="right-sidebar.html">Right Sidebar</a></li>
-						<li><a href="no-sidebar.html">No Sidebar</a></li>
+						<li><a href="community-main.html">Community</a></li>
+						<li><a href="index.html">Product</a>
+							<ul>
+								<li><a href="product-detail.html">Product</a></li>
+								<li><a href="product-post.html">Register Product</a></li>
+								<li><a href="product-update.html">Edit Product</a></li>
+							</ul>
+						</li>
 					</ul>
 				</nav>
 
