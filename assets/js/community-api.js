@@ -16,7 +16,7 @@ communityHomeBtns.forEach(button => {
 // 게시글 리스트 GET 요청
 
 export async function getPostings() {
-    const url = `${BACK_BASE_URL}/posting/`
+    const url = `${BACK_BASE_URL}/posting/?page=1`
     const response = await fetch(url, {
         method: 'GET'
     })
@@ -26,34 +26,39 @@ export async function getPostings() {
         alert("잠시 후 다시 시도해주세요")
     }
 
-    // 총 글의 수로 페이지 수를 구함
-    // response의 next url에서 현재, 다음, 이전페이지 번호를 구함
-    const posting_count = response_json.count
-    const page_count = parseInt(posting_count / pageSize) + 1
-    const page_num = response_json.next.substr(-1) - 1
-    const pre_page = 1
-    const next_page = page_num + 1
-    const paginate = document.getElementById('gw-paginate')
+    if (response_json.next) {
 
-    // 게시글 수가 5개 이하면 페이지 이동 박스 자체가 안보이게
-    if (posting_count < 6) {
-        const pagebox = document.getElementById('gw-pagebox')
-        pagebox.remove();
-        // 페이지 박스 생성
-    } else {
-        paginate.innerHTML = `<li class="gw-pagebtn">
-                                    <a id="page_item_pre" class="gw-pagenum gw-p-move" onclick="pageMove(${pre_page})" data-page="${pre_page}">
-                                        <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                </li>
-                                <li class="gw-pagebtn">
-                                    <a id="gw-pagenum">${page_num} / ${page_count}</a>
-                                </li>
-                                <li class="gw-pagebtn">
-                                    <a id="page_item_next" class="gw-pagenum gw-p-move" onclick="pageMove(${next_page})" data-page="${next_page}">
-                                        <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                </li>`
+        // 총 글의 수로 페이지 수를 구함
+        // response의 next url에서 현재, 다음, 이전페이지 번호를 구함
+        const posting_count = response_json.count
+        const page_count = parseInt(posting_count / pageSize) + 1
+
+        const page_num = response_json.next.substr(-1) - 1
+        const pre_page = 1
+        const next_page = page_num + 1
+        const paginate = document.getElementById('gw-paginate')
+
+        // 게시글 수가 5개 이하면 페이지 이동 박스 자체가 안보이게
+        if (posting_count < 6) {
+            const pagebox = document.getElementById('gw-pagebox')
+            pagebox.remove();
+
+            // 페이지 박스 생성
+        } else {
+            paginate.innerHTML = `<li class="gw-pagebtn">
+        <a id="page_item_pre" class="gw-pagenum gw-p-move" onclick="pageMove(${pre_page})" data-page="${pre_page}">
+        <span aria-hidden="true">&laquo;</span>
+        </a>
+        </li>
+        <li class="gw-pagebtn">
+        <a id="gw-pagenum">${page_num} / ${page_count}</a>
+        </li>
+        <li class="gw-pagebtn">
+        <a id="page_item_next" class="gw-pagenum gw-p-move" onclick="pageMove(${next_page})" data-page="${next_page}">
+        <span aria-hidden="true">&raquo;</span>
+        </a>
+        </li>`
+        }
     }
     // 받아온 데이터로 게시글 보여주기
     viewPostingList(response_json)
@@ -64,7 +69,6 @@ export async function viewPostingList(response_json) {
 
     const postings = response_json.results
 
-    console.log(response_json)
 
     const templateBox = document.getElementById('gw-container')
     templateBox.innerHTML = ''
@@ -272,7 +276,7 @@ export async function getEditPosting() {
         const response_json = await response.json()
         return response_json
     } else {
-        console.log("잠시 후 다시 시도해주세요")
+        alert("잠시 후 다시 시도해주세요")
     }
 }
 
@@ -308,7 +312,6 @@ export async function updatePosting() {
 
 // 게시글 삭제 DELETE 요청
 export async function DeletePosting(POSTING_ID) {
-    // console.log(POSTING_ID)
     try {
         const confirmed = confirm("정말 삭제할까요?");
 
@@ -336,7 +339,6 @@ export async function DeletePosting(POSTING_ID) {
 
 // 댓글 목록 GET 요청
 export async function getPostingComment(POSTING_ID) {
-    // console.log(POSTING_ID)
     const url = `${BACK_BASE_URL}/posting/${POSTING_ID}/comment/`
     const response = await fetch(url, {
         method: 'GET'
@@ -345,7 +347,7 @@ export async function getPostingComment(POSTING_ID) {
         const response_json = await response.json()
         return response_json
     } else {
-        console.log("잠시 후 다시 시도해주세요")
+        alert("잠시 후 다시 시도해주세요")
     }
 }
 
@@ -353,7 +355,6 @@ export async function getPostingComment(POSTING_ID) {
 export async function writeComment(POSTING_ID) {
     const url = `${BACK_BASE_URL}/posting/${POSTING_ID}/comment/`;
     const content = document.getElementById('post-comment').value;
-    console.log(content)
 
     const response = await fetch(url, {
         headers: {
@@ -393,7 +394,6 @@ export async function viewPostingComment() {
                                 </div>`
         const comment_list = document.getElementById("gw-comment-list")
         comment_list.appendChild(template)
-        console.log(comment)
     })
 }
 
