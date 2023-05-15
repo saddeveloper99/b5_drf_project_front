@@ -49,6 +49,14 @@
     border-radius: 20px;
 }
 
+.gw-community {
+    cursor: pointer;
+}
+
+.gw-click {
+    cursor: pointer;
+
+}
 
 /* 게시글 리스트 항목들 */
 /* 작성자 이미지 */
@@ -118,3 +126,4 @@
     font-weight: 600;
     font-size: 1em;
 }
+

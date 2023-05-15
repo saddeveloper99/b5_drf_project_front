@@ -57,10 +57,14 @@
 
 #gw-edit-btn {
     margin: 1em 1em 0 auto;
+    cursor: pointer;
+
 }
 
 #gw-delete-btn {
     margin-top: 1em;
+    cursor: pointer;
+
 }
 
 /* 게시글 내용 */
