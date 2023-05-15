@@ -51,7 +51,7 @@
 }
 
 /* 수정 삭제 버튼 */
-#gw-edit-box{
+#gw-edit-box {
     display: flex;
 }
 
@@ -170,7 +170,7 @@
 
 
 .gw-btn-comment {
-    margin-left: auto;
+    margin: 0 0 10px auto;
     font-size: 1em;
 }
 

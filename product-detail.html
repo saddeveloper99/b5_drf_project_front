@@ -70,13 +70,13 @@
 									alt="your image">
 								<div class="jy-sidebar_head-wrapper">
 									<h3 class="jy-sidebar-h" id="jy-name">Subheading</h3>
-									<button class="like-button">
+									<button class="like-button" id="product-like-button">
 										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24"
 											height="24">
 											<path
 												d="M12 21.35L3.54 12.82a6.25 6.25 0 0 1 0-8.84 6.25 6.25 0 0 1 8.84 0L12 5.67l.32-.29a6.25 6.25 0 0 1 8.84 0 6.25 6.25 0 0 1 0 8.84L12 21.35z"
 												fill="#ccc"></path>
-											<path class="like-icon"
+											<path class="like-icon" id="product-like-icon"
 												d="M12 21.35L3.54 12.82a6.25 6.25 0 0 1 0-8.84 6.25 6.25 0 0 1 8.84 0L12 5.67l.32-.29a6.25 6.25 0 0 1 8.84 0 6.25 6.25 0 0 1 0 8.84L12 21.35z"
 												fill="#ff5b5b"></path>
 										</svg>
@@ -94,39 +94,12 @@
 							</section>
 						</div>
 					</div>
-					<div class="col-8 col-12-medium imp-medium">
 
-						<!-- 첫번째 부분: 유저 프로필사진과 이름 -->
-						<div class="user-profile">
-							<img src="profile-picture.jpg" alt="프로필 사진">
-							<p class="jy-comment-username">유저 이름</p>
-						</div>
-
-						<!-- 두번째 부분: 별점과 리뷰 내용 -->
-						<div class="rating">
-							<div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-							<div class="review">리뷰 내용 Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-						</div>
-
-						<!-- 세번째 부분: 등록/수정 날짜와 좋아요 -->
-						<div class="review">
-							<span class="date">2023-05-12</span>
-							<button class="like-button">
-								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-									<path
-										d="M12 21.35L3.54 12.82a6.25 6.25 0 0 1 0-8.84 6.25 6.25 0 0 1 8.84 0L12 5.67l.32-.29a6.25 6.25 0 0 1 8.84 0 6.25 6.25 0 0 1 0 8.84L12 21.35z"
-										fill="#ccc"></path>
-									<path class="like-icon"
-										d="M12 21.35L3.54 12.82a6.25 6.25 0 0 1 0-8.84 6.25 6.25 0 0 1 8.84 0L12 5.67l.32-.29a6.25 6.25 0 0 1 8.84 0 6.25 6.25 0 0 1 0 8.84L12 21.35z"
-										fill="#ff5b5b"></path>
-								</svg>
-							</button>
-							<span class="like-count">{like_count}</span>
-						</div>
-					</div>
-					<div class="review-container">
+					<!-- review 부분 -->
+					<div class="col-8 col-12-medium imp-medium" id="review-container">
 
 					</div>
+
 				</div>
 			</div>
 		</div>
@@ -204,7 +177,6 @@
 	<script src="assets/js/breakpoints.min.js"></script>
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
-	<script src="assets/js/joonyeol.js"></script>
 	<script src="/assets/js/product-detail.js" type="module"></script>
 
 </body>

@@ -115,7 +115,7 @@ export async function viewPostingList(response_json) {
 }
 
 // 페이지 이동 시 함수 response에서 받아온 next url로 현재 페이지 찾기. 
-// 이전이나 다음이 각각 첫페이지나 마지막 페이지면 그거에 맞게 처리. 
+// 이전이나 다음이 각각 첫페이지나 마지막 페이지면 예외 처리. 
 window.pageMove = async function (move) {
     const url = `${BACK_BASE_URL}/posting/?page=${move}`
     const response = await fetch(url, {
@@ -212,7 +212,7 @@ export async function getPostingDetail(POSTING_ID) {
         const response_json = await response.json()
         return response_json
     } else {
-        console.log("잠시 후 다시 시도해주세요")
+        alert("잠시 후 다시 시도해주세요")
     }
 }
 
@@ -231,8 +231,7 @@ export async function viewPostingDetail(posting) {
     updatedAt.innerHTML = posting.updated_at;
 
     const isUpdated = document.getElementById('gw-is-updated');
-    const a = posting.is_updated ? "수정일" : "작성일";
-    isUpdated.innerHTML = a
+    isUpdated.textContent = posting.is_updated ? "수정일" : "작성일";
 
     const likeCount = document.getElementById('gw-like');
     likeCount.innerHTML = posting.like_count;
@@ -383,13 +382,11 @@ export async function viewPostingComment() {
         template.setAttribute("class", "gw-comment")
         template.innerHTML = `<div class= "gw-comment-writer">
                                 <img class="comment-image" src="${comment.image}" alt="">
-                                <div class="comment-writer">${comment.username}</div>
-                                <div style="display: flex; margin:auto 0 auto auto">
-                                    <button class="gw-btn-comment gw-btn-nocolor">수정</button>
-                                    <button class="gw-btn-comment gw-btn-nocolor">삭제</button>
-                                    </div>
+                                <div class="comment-writer">${comment.username}
                                 </div>
-                                <div class="gw-comment-content"
+                                <div style="display: flex; margin:auto 0 auto auto">                                   </div>
+                                </div>
+                                <div data-cmt_id="${comment.id}" class="gw-comment-content"
                                     style="background-color:rgb(228, 228, 228); padding: 2%; border-radius: 10px;">
                                     <div style="width: 90%;">${comment.content}
                                     </div>
@@ -399,3 +396,12 @@ export async function viewPostingComment() {
         console.log(comment)
     })
 }
+
+
+// 댓글 수정 부분
+/* <button  class="gw-btn-comment gw-btn-nocolor" onclick="updateComment(${comment.id})">수정</button>
+<button class="gw-btn-comment gw-btn-nocolor" onclick="deleteComment(${comment.id})">삭제</button>
+<form class="edit-form" style="display: none;">
+    <textarea class="edit-textarea">${comment.content}</textarea>
+    <button type="submit" class="submit-button">수정 완료</button>
+</form> */
