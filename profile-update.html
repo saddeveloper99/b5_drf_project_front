@@ -61,7 +61,7 @@
 		<!-- Main -->
 		<div id="main-wrapper">
 			<div class="container">
-				<form>
+				<form id="ji-profile-update-form">
 					<div class="row gtr-200">
 						<div class="col-4 col-12-medium">
 							<div id="sidebar">
@@ -72,7 +72,8 @@
 										<div class="image featured-ji">
 											<img id="profile_image" src="images/happy_rtan.gif" alt="" />
 										</div>
-										<div style="text-align: center;">
+										<div class="form-row" style="text-align: center;">
+											<span class="input-file__info"></span>
 											<label for="file" class="button alt" type="button">프로필 사진</label>
 											<input class="input-file" type="file" name="file_cv" id="file"
 												style="display: none;">
@@ -146,7 +147,7 @@
 												</div>
 												<h3>성별</h3>
 												<div style="margin-top: -1rem; margin-bottom: 2rem;">
-													<select id="ji_profile_gender">
+													<select id="ji_profile_gender" name="gender">
 														<option value="M" id="ji_option_male">남성</option>
 														<option value="F" id="ji_option_female">여성</option>
 													</select>
@@ -165,8 +166,8 @@
 												</div>
 												<h3>자기소개</h3>
 												<div>
-													<textarea id="ji_profile_introduction" placeholder="자기 소개"
-														rows="10"></textarea>
+													<textarea id="ji_profile_introduction" placeholder="자기 소개" rows="10"
+														name="itroduction"></textarea>
 												</div>
 											</div>
 										</div>
@@ -175,14 +176,15 @@
 							</div>
 						</div>
 					</body>
+					<div style="margin-top: -5rem;">
+						<button type="button" class="button alt"
+							style="float: right; margin-left:15px; margin-bottom:15px; color: crimson;"
+							onclick="handleDeactivate()">탈퇴</button>
+						<button type=" button" onclick="handleProfileUpdate()" class="button alt"
+							style="float: right;">수정</button>
+					</div>
 				</form>
-				<div style="margin-top: -5rem;">
-					<button type="button" class="button alt"
-						style="float: right; margin-left:15px; margin-bottom:15px; color: crimson;"
-						onclick="handleDeactivate()">탈퇴</button>
-					<button type=" button" onclick="handleProfileUpdate()" class="button alt"
-						style="float: right;">수정</button>
-				</div>
+
 			</div>
 		</div>
 
@@ -194,13 +196,9 @@
 
 						<!-- Links -->
 						<section class="widget links">
-							<h3>Random Stuff</h3>
 							<ul class="style2">
-								<li><a href="#">Etiam feugiat condimentum</a></li>
-								<li><a href="#">Aliquam imperdiet suscipit odio</a></li>
-								<li><a href="#">Sed porttitor cras in erat nec</a></li>
-								<li><a href="#">Felis varius pellentesque potenti</a></li>
-								<li><a href="#">Nullam scelerisque blandit leo</a></li>
+								<li><a href="#">HELP</a></li>
+								<li><a href="#">About 마셔보장</a></li>
 							</ul>
 						</section>
 
@@ -209,13 +207,10 @@
 
 						<!-- Links -->
 						<section class="widget links">
-							<h3>Random Stuff</h3>
 							<ul class="style2">
-								<li><a href="#">Etiam feugiat condimentum</a></li>
-								<li><a href="#">Aliquam imperdiet suscipit odio</a></li>
-								<li><a href="#">Sed porttitor cras in erat nec</a></li>
-								<li><a href="#">Felis varius pellentesque potenti</a></li>
-								<li><a href="#">Nullam scelerisque blandit leo</a></li>
+								<li><a href="#">PRODUCT REGISTRATION</a></li>
+								<li><a href="#">ADVERTISE WITH US</a></li>
+								<li><a href="#">CAREERS</a></li>
 							</ul>
 						</section>
 
@@ -224,15 +219,11 @@
 
 						<!-- Links -->
 						<section class="widget links">
-							<h3>Random Stuff</h3>
+							<h3>JOIN THE NEWSLETTER</h3>
 							<ul class="style2">
-								<li><a href="#">Etiam feugiat condimentum</a></li>
-								<li><a href="#">Aliquam imperdiet suscipit odio</a></li>
-								<li><a href="#">Sed porttitor cras in erat nec</a></li>
-								<li><a href="#">Felis varius pellentesque potenti</a></li>
-								<li><a href="#">Nullam scelerisque blandit leo</a></li>
+								<p>Get the freshest reviews, news, and<br />
+									more delivered right to your inbox!</p>
 							</ul>
-						</section>
 
 					</div>
 					<div class="col-3 col-6-medium col-12-small">
@@ -252,21 +243,7 @@
 								<li><a href="#" class="icon brands fa-pinterest"><span
 											class="label">Pinterest</span></a></li>
 							</ul>
-							<p>1234 Fictional Road<br />
-								Nashville, TN 00000<br />
-								(800) 555-0000</p>
 						</section>
-
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-12">
-						<div id="copyright">
-							<ul class="menu">
-								<li>&copy; Untitled. All rights reserved</li>
-								<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-							</ul>
-						</div>
 					</div>
 				</div>
 			</footer>
