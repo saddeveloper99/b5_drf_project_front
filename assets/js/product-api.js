@@ -160,6 +160,10 @@ export async function viewProductReview() {
         const userId = payload.user_id;
         review.isLiked = review.likes.includes(userId);
     }
+    else {
+        review.isLiked = false
+        console.log("review.isLiked : ",review.isLiked)
+    }
 
 
     template.innerHTML = `<div class="user-profile">
@@ -174,7 +178,7 @@ export async function viewProductReview() {
     
         <div class="review">
           <span class="date">2023-05-12</span>
-          <button class="${review.isLiked ? "like-button" : "like-button liked"}" id="like-button-${review.id}">
+          <button class="${review.isLiked ? "like-button liked" : "like-button"}" id="like-button-${review.id}">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
               <path d="M12 21.35L3.54 12.82a6.25 6.25 0 0 1 0-8.84 6.25 6.25 0 0 1 8.84 0L12 5.67l.32-.29a6.25 6.25 0 0 1 8.84 0 6.25 6.25 0 0 1 0 8.84L12 21.35z" fill="#ccc"></path>
               <path class="like-icon" id="like-icon-${review.id}" 
